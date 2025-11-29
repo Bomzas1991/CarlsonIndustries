@@ -1,0 +1,46 @@
+{
+  "website": {
+    "name": "Carlson Industries",
+    "description": "Premium engineering and manufacturing solutions with a focus on design, performance and sustainability.",
+    "branding": {
+      "hero": {
+        "text": "Carlson Industries",
+        "fontFamily": "Playfair Display, Georgia, serif",
+        "fontSize": "clamp(48px, 8vw, 120px)",
+        "gradient": ["#FFB824", "#FF6A00"],
+        "alignment": "center",
+        "position": "top-middle",
+        "letterSpacing": "0.02em"
+      },
+      "backgroundSequence": [
+        {
+          "stop": 0,
+          "gradient": ["#071130", "#0f172a"]
+        },
+        {
+          "stop": 0.5,
+          "gradient": ["#08203a", "#0b2544"]
+        },
+        {
+          "stop": 1,
+          "gradient": ["#042027", "#00131a"]
+        }
+      ],
+      "scrollEffect": {
+        "type": "smooth-interpolate",
+        "maxBlurPx": 8,
+        "maxDarken": 0.22
+      }
+    },
+    "layout": {
+      "nav": ["Home", "Products", "R&D", "Careers", "Contact"]
+    },
+    "pages": [
+      { "title": "Home", "path": "/" },
+      { "title": "Products", "path": "/products" },
+      { "title": "Research & Development", "path": "/rnd" },
+      { "title": "Careers", "path": "/careers" },
+      { "title": "Contact", "path": "/contact" }
+    ]
+  }
+}
