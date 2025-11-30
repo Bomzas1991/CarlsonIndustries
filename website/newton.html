@@ -1,70 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newton's Laws</title>
-<style>
-  body {
-    margin: 0;
-    padding: 40px;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, white 50%, orange 50%);
-    color: #333;
-  }
-
-  h1 {
-    text-align: center;
-    text-transform: uppercase;
-    color: #FF6A00;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
-  }
-
-  h2 {
-    color: #FF6A00;
-    margin-top: 30px;
-  }
-
-  p {
-    line-height: 1.6;
-  }
-
-  .back-btn {
-    display: block;
-    margin: 40px auto 0 auto;
-    padding: 12px 25px;
-    font-size: 16px;
-    background-color: #ff6a00;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s, transform 0.2s;
-    text-align: center;
-  }
-
-  .back-btn:hover {
-    background-color: darkorange;
-    transform: scale(1.05);
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship, Manage, Track, Deliver</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <h1>Newton's Laws of Motion</h1>
 
-  <h2>1. First Law (Law of Inertia)</h2>
-  <p>An object at rest stays at rest, and an object in motion continues in motion with the same speed and direction unless acted upon by an external force.</p>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.fedex.com/content/dam/fedex-com/logos/logo.png" alt="FedEx Logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Shipping <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Tracking <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Design & Print <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Locations <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Support <i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+            </nav>
+            <nav class="user-nav">
+                <ul>
+                    <li><a href="#">Sign Up or Log In</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <h2>2. Second Law (Law of Acceleration)</h2>
-  <p>The acceleration of an object depends on the net force acting upon it and its mass. <br><strong>F = m × a</strong></p>
+    <!-- Main Hero Section -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Ship, manage, track, deliver</h1>
 
-  <h2>3. Third Law (Action and Reaction)</h2>
-  <p>For every action, there is an equal and opposite reaction. Forces always occur in pairs.</p>
+            <div class="action-tabs">
+                <div class="tab">
+                    <i class="fas fa-calculator"></i>
+                    <span>RATE & SHIP</span>
+                </div>
+                <div class="tab active">
+                    <i class="fas fa-box-open"></i>
+                    <span>TRACK</span>
+                </div>
+                <div class="tab">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>LOCATIONS</span>
+                </div>
+            </div>
 
-  <button class="back-btn" onclick="location.href='index.html'">Back Home</button>
+            <div class="tracking-form">
+                <input type="text" placeholder="TRACKING ID">
+                <button type="submit">TRACK</button>
+            </div>
+            <div class="tracking-links">
+                <a href="#">MULTIPLE TRACKING NUMBERS</a> | <a href="#">NEED HELP?</a>
+            </div>
+        </div>
+    </main>
+
 </body>
 </html>
+
 
 
