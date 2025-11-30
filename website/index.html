@@ -12,16 +12,16 @@
             --secondary-text: #CCCCCC; 
             --header-text-dark: #666666; 
             --dark-background: #0D0D15; 
-            --schedule-background: #2E1A1A; /* Still reddish for schedule */
+            --schedule-background: #2A1A2E; /* UPDATED: Dark Purplish background */
             --footer-background: #181818; 
-            --accent-color: #D62828; /* VIBRANT RED accent remains */
+            --accent-color: #D62828; 
             --accent-hover: #E84F4F; 
 
-            /* UPDATED: Retrofuturism Colors (Blue & Red) */
-            --retro-blue: rgba(65, 105, 225, 0.4); /* Royal Blue, faded */
-            --retro-red: rgba(220, 20, 60, 0.3); /* Crimson, faded */
-            --retro-purple: rgba(138, 43, 226, 0.2); /* Blue-Violet, faded */
-            --retro-dark-overlay: rgba(0, 0, 0, 0.7); /* Slightly darker overlay for depth */
+            /* Retrofuturism Colors */
+            --retro-blue: rgba(65, 105, 225, 0.4); 
+            --retro-red: rgba(220, 20, 60, 0.3); 
+            --retro-purple: rgba(138, 43, 226, 0.2); 
+            --retro-dark-overlay: rgba(0, 0, 0, 0.7); 
         }
 
         * {
@@ -62,27 +62,25 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            filter: blur(80px); /* Slightly less blur, can adjust */
+            filter: blur(80px); 
             opacity: 0.6;
             animation: retrofuturism-move 30s infinite alternate ease-in-out;
-            /* UPDATED: Blue/Red gradients, SMALLER sizes */
             background: 
                 radial-gradient(circle at 20% 30%, var(--retro-blue) 0%, transparent 70%),
                 radial-gradient(circle at 70% 80%, var(--retro-red) 0%, transparent 70%),
                 radial-gradient(circle at 40% 90%, var(--retro-purple) 0%, transparent 70%);
-            background-size: 30% 30%, 25% 25%, 35% 35%; /* Significantly smaller blobs */
+            background-size: 30% 30%, 25% 25%, 35% 35%; 
         }
 
         .retrofuturism-background::after {
             animation-delay: 15s; 
-            filter: blur(60px); /* Slightly different blur */
+            filter: blur(60px); 
             opacity: 0.5;
-            /* UPDATED: Blue/Red gradients, SMALLER sizes */
             background: 
                 radial-gradient(circle at 80% 20%, var(--retro-red) 0%, transparent 70%),
                 radial-gradient(circle at 30% 60%, var(--retro-purple) 0%, transparent 70%),
                 radial-gradient(circle at 90% 10%, var(--retro-blue) 0%, transparent 70%);
-            background-size: 35% 35%, 30% 30%, 28% 28%; /* Significantly smaller blobs */
+            background-size: 35% 35%, 30% 30%, 28% 28%; 
         }
 
         @keyframes retrofuturism-move {
@@ -120,11 +118,11 @@
             transition: padding 0.3s;
         }
 
-        /* NEW: Logo Image Styling */
+        /* UPDATED: Larger Logo Image Styling */
         .logo-img {
-            height: 40px; /* Adjust as needed for your logo size */
+            height: 60px; /* Increased from 40px */
             width: auto;
-            display: block; /* Ensure it behaves like a block element */
+            display: block; 
         }
 
         .nav-links {
@@ -221,7 +219,7 @@
 
         /* --- Schedule Section Styling --- */
         .schedule-section {
-            background-color: var(--schedule-background); 
+            background-color: var(--schedule-background); /* NOW PURPLISH */
             padding: 80px 40px;
             min-height: 100vh; 
             display: flex;
@@ -342,9 +340,9 @@
                 margin: 0;
             }
             
-            /* Adjust logo size on mobile */
+            /* UPDATED: Adjusted logo size on mobile */
             .logo-img {
-                height: 30px; 
+                height: 45px; /* Increased from 30px */
             }
         }
     </style>
