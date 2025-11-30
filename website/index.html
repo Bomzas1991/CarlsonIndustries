@@ -58,29 +58,30 @@
         .retrofuturism-background::after {
             content: '';
             position: absolute;
-            width: 200%; 
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            filter: blur(80px); 
-            opacity: 0.6;
+            width: 130%;      /* smaller than 200% */
+            height: 130%;     /* smaller than 200% */
+            top: -15%;        /* reduced offset */
+            left: -15%;
+            filter: blur(45px); /* decreased from 80px → tighter glow */
+            opacity: 0.5;
             animation: retrofuturism-move 30s infinite alternate ease-in-out;
             background: 
-                radial-gradient(circle at 20% 30%, var(--retro-blue) 0%, transparent 70%),
-                radial-gradient(circle at 70% 80%, var(--retro-red) 0%, transparent 70%),
-                radial-gradient(circle at 40% 90%, var(--retro-purple) 0%, transparent 70%);
-            background-size: 30% 30%, 25% 25%, 35% 35%; 
+                radial-gradient(circle at 20% 30%, var(--retro-blue) 0%, transparent 60%),
+                radial-gradient(circle at 70% 80%, var(--retro-red) 0%, transparent 60%),
+                radial-gradient(circle at 40% 90%, var(--retro-purple) 0%, transparent 60%);
+            background-size: 22% 22%, 18% 18%, 25% 25%; /* smaller light sources */
+        }
         }
 
         .retrofuturism-background::after {
-            animation-delay: 15s; 
-            filter: blur(60px); 
-            opacity: 0.5;
-            background: 
-                radial-gradient(circle at 80% 20%, var(--retro-red) 0%, transparent 70%),
-                radial-gradient(circle at 30% 60%, var(--retro-purple) 0%, transparent 70%),
-                radial-gradient(circle at 90% 10%, var(--retro-blue) 0%, transparent 70%);
-            background-size: 35% 35%, 30% 30%, 28% 28%; 
+            animation-delay: 15s;
+            filter: blur(35px);    /* smaller blur */
+            opacity: 0.45;         /* slightly reduced */
+            background:
+                radial-gradient(circle at 80% 20%, var(--retro-red) 0%, transparent 60%),
+                radial-gradient(circle at 30% 60%, var(--retro-purple) 0%, transparent 60%),
+                radial-gradient(circle at 90% 10%, var(--retro-blue) 0%, transparent 60%);
+            background-size: 24% 24%, 20% 20%, 22% 22%;
         }
 
         @keyframes retrofuturism-move {
@@ -511,4 +512,5 @@
 
 </body>
 </html>
+
 
