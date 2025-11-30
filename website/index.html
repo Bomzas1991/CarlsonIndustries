@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geriausias Klubas Vilniuje</title>
+    <title>Royal Boxing Klubas</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset and Variables */
@@ -11,7 +11,7 @@
             --primary-text: #FFFFFF;
             --secondary-text: #B0B0B0;
             --dark-background: #0D0D15; 
-            --schedule-background: #1a1a2e; /* Slightly lighter dark color for section separation */
+            --schedule-background: #1a1a2e;
             --accent-color: #555AFF; 
             --nav-link-hover: #FFFFFF;
         }
@@ -31,10 +31,10 @@
             flex-direction: column;
             overflow-x: hidden; 
             position: relative;
-            scroll-behavior: smooth; /* Ensure native smooth scrolling for anchors */
+            scroll-behavior: smooth; 
         }
 
-        /* --- Header/Navigation Bar (Unchanged) --- */
+        /* --- Header/Navigation Bar --- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -159,7 +159,7 @@
             animation: bounce 1.5s infinite; 
             transition: opacity 0.3s ease;
             color: var(--primary-text); 
-            text-decoration: none; /* Crucial for the anchor tag */
+            text-decoration: none; 
         }
 
         .scroll-arrow:hover {
@@ -188,6 +188,7 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
+            position: relative; /* Needed to place the arrow right above the section */
         }
 
         .schedule-section h2 {
@@ -200,17 +201,20 @@
         
         /* --- Minimalistic Table Styling --- */
         .schedule-table {
-            width: 80%;
-            max-width: 1000px;
+            width: 90%;
+            max-width: 1200px; /* Increased max-width for better display of long content */
             border-collapse: collapse;
             text-align: left;
             margin-top: 20px;
+            table-layout: fixed; /* Ensures columns are equal width */
         }
 
         .schedule-table th, .schedule-table td {
-            padding: 18px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+            padding: 18px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
             font-weight: 400;
+            word-wrap: break-word;
+            font-size: 15px; /* Slightly smaller for fitting the detailed text */
         }
         
         .schedule-table th {
@@ -222,21 +226,32 @@
         
         .schedule-table td {
             color: var(--primary-text);
-            font-size: 16px;
         }
         
         .schedule-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05); /* Very slight hover effect */
+            background-color: rgba(255, 255, 255, 0.05);
         }
         
         .time-col {
             font-weight: 600;
             color: var(--secondary-text);
+            width: 120px; /* Fixed width for the time column */
+            padding-left: 25px;
         }
         
-        /* Last row/cell cleanup */
         .schedule-table tbody tr:last-child td {
             border-bottom: none;
+        }
+        
+        .schedule-arrow-above {
+            position: absolute;
+            top: -50px; /* Position it above the schedule section */
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg); /* Flip it to point up */
+            width: 40px;
+            height: 40px;
+            color: var(--primary-text);
+            opacity: 0.5; /* Subtle hint to scroll back up */
         }
 
     </style>
@@ -246,7 +261,7 @@
     <div class="background-effect"></div>
 
     <header class="header">
-        <a href="#" class="logo">YOUMEME</a> 
+        <a href="#" class="logo">ROYAL</a> 
         <nav class="nav-links">
             <a href="#">Introduction</a>
             <a href="#">Reviews</a>
@@ -265,7 +280,7 @@
 
     <main class="main-content" id="home">
         <div class="hero-text-container">
-            <h1 class="main-heading">YOUMEME</h1>
+            <h1 class="main-heading">ROYAL BOXING</h1>
             
             <p class="description">
                 Geriausias klubas Vilniuje. Prisijunk ir tu!
@@ -288,6 +303,14 @@
     </a>
 
     <section id="schedule" class="schedule-section">
+        
+        <a href="#home" class="schedule-arrow-above" aria-label="Scroll back up">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </a>
+        
         <h2>Mūsų Tvarkaraštis</h2>
         
         <table class="schedule-table">
@@ -299,36 +322,68 @@
                     <th>Trečiadienis</th>
                     <th>Ketvirtadienis</th>
                     <th>Penktadienis</th>
+                    <th>Šeštadienis</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td class="time-col">9:00 - 10:00</td>
+                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-col">10:00 - 11:00</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                </tr>
+                <tr>
+                    <td class="time-col">15:30 - 16:30</td>
+                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td class="time-col">17:00 - 18:30</td>
-                    <td>Bokso pamoka</td>
-                    <td>Kardio</td>
-                    <td>Bokso pamoka</td>
-                    <td>Jėgos treniruotė</td>
-                    <td>Laisvas laikas</td>
+                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td class="time-col">19:00 - 20:30</td>
-                    <td>Klubo Susirinkimas</td>
-                    <td>Mišrios Rytų Kovos</td>
-                    <td>Klubo Susirinkimas</td>
-                    <td>Joga</td>
-                    <td>Šokių naktis</td>
+                    <td class="time-col">18:00 - 19:00</td>
+                    <td></td>
+                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td class="time-col">20:30 - 22:00</td>
-                    <td>Laisvas laikas</td>
-                    <td>Krepšinis</td>
-                    <td>Laisvas laikas</td>
-                    <td>Bokso Pamoka</td>
-                    <td>Uždarymas</td>
+                    <td class="time-col">19:00 - 20:00</td>
+                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td></td>
+                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
     </section>
 
-    </body>
+</body>
 </html>
+
