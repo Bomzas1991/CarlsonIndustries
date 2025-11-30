@@ -10,10 +10,11 @@
         :root {
             --primary-text: #FFFFFF;
             --secondary-text: #CCCCCC; 
+            --header-text-dark: #666666; /* Dark Gray for table headers */
             --dark-background: #0D0D15; 
-            --schedule-background: #2E1A1A; /* Deep, dark reddish background */
+            --schedule-background: #2E1A1A; 
             --footer-background: #181818; 
-            --accent-color: #D62828; /* VIBRANT RED */
+            --accent-color: #D62828; 
             --accent-hover: #E84F4F; 
         }
 
@@ -60,6 +61,7 @@
             width: 100%;
             position: fixed; 
             z-index: 10;
+            transition: padding 0.3s;
         }
 
         .logo {
@@ -69,6 +71,10 @@
             color: var(--primary-text);
         }
 
+        .nav-links {
+             display: flex; /* Ensure links are flexible */
+        }
+        
         .nav-links a {
             color: var(--secondary-text);
             text-decoration: none;
@@ -99,11 +105,6 @@
             color: var(--primary-text);
             border: 1px solid var(--primary-text);
         }
-        
-        .doc-button:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
 
         .launch-button {
             background-color: var(--accent-color);
@@ -111,10 +112,6 @@
             border: none;
         }
         
-        .launch-button:hover {
-            background-color: var(--accent-hover);
-        }
-
         /* --- Main Content Area (Hero Section) --- */
         .main-content {
             flex-grow: 1;
@@ -127,28 +124,29 @@
             min-height: 100vh; 
             padding-top: 80px; 
             background-color: transparent; 
+            transition: padding-left 0.3s;
         }
 
         .hero-text-container {
-            max-width: 600px; /* Wider container for larger text */
+            max-width: 600px; 
             padding-bottom: 50px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
         }
 
-        /* INCREASED SIZE */
         .main-heading {
-            font-size: 88px; /* Bigger heading */
+            font-size: 88px; 
             font-weight: 800;
-            margin-bottom: 25px; /* More space below */
+            margin-bottom: 25px; 
             line-height: 1;
+            transition: font-size 0.3s;
         }
 
-        /* INCREASED SIZE */
         .description {
-            font-size: 24px; /* Bigger description */
+            font-size: 24px; 
             color: var(--secondary-text);
             margin-bottom: 40px;
             font-weight: 300;
+            transition: font-size 0.3s;
         }
         
         /* --- Scroll Arrow --- */
@@ -162,14 +160,13 @@
             cursor: pointer;
             z-index: 6; 
             animation: bounce 1.5s infinite; 
-            transition: opacity 0.3s ease;
             color: var(--primary-text); 
             text-decoration: none; 
         }
 
         /* --- Schedule Section Styling --- */
         .schedule-section {
-            background-color: var(--schedule-background); /* NOW REDDISH */
+            background-color: var(--schedule-background); 
             padding: 80px 40px;
             min-height: 100vh; 
             display: flex;
@@ -180,18 +177,18 @@
             position: relative; 
             z-index: 5; 
         }
-
-        .schedule-section h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: var(--primary-text);
-            letter-spacing: 1px;
-        }
         
+        /* Schedule Table Container for Horizontal Scrolling */
+        .schedule-table-container {
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto; /* Enable horizontal scroll on small screens */
+            padding-bottom: 10px; /* Space for scroll bar */
+        }
+
         .schedule-table {
-            width: 90%;
-            max-width: 1200px; 
+            min-width: 800px; /* Minimum width to prevent collapsing on mobile */
+            width: 100%;
             border-collapse: collapse;
             text-align: left;
             margin-top: 20px;
@@ -206,15 +203,12 @@
             font-size: 15px; 
         }
         
+        /* NEW: Dark Gray Text for Table Headers */
         .schedule-table th {
-            color: var(--accent-color); 
+            color: var(--header-text-dark); 
             font-weight: 600;
             text-transform: uppercase;
             font-size: 14px;
-        }
-        
-        .schedule-table td {
-            color: var(--primary-text);
         }
         
         .time-col {
@@ -234,11 +228,6 @@
             width: 100%;
         }
 
-        .footer p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
         .footer .contact-info a {
             color: var(--secondary-text);
             text-decoration: none;
@@ -246,17 +235,70 @@
             transition: color 0.3s ease;
         }
 
-        .footer .contact-info a:hover {
-            color: var(--accent-hover);
-        }
-        
-        .footer-heading {
-            font-weight: 700;
-            color: var(--primary-text);
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
+        /* ==================================== */
+        /* MOBILE OPTIMIZATION         */
+        /* ==================================== */
+        @media (max-width: 900px) {
+            
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+                position: static; /* Unfix header on small screen */
+            }
+            
+            .nav-links {
+                flex-wrap: wrap; /* Wrap links on multiple lines */
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                margin: 5px 10px;
+            }
+            
+            .action-buttons {
+                margin-top: 10px;
+            }
+            
+            .main-content {
+                min-height: 80vh; 
+                padding: 120px 5% 50px 5%; /* Adjust padding for centered look */
+                justify-content: center;
+                text-align: center;
+            }
 
+            .hero-text-container {
+                max-width: 100%;
+                padding-bottom: 20px;
+            }
+
+            .main-heading {
+                font-size: 56px; /* Smaller heading on mobile */
+            }
+
+            .description {
+                font-size: 18px; /* Smaller description on mobile */
+            }
+
+            /* Move arrow back to standard flow if header is static */
+            .scroll-arrow {
+                position: relative;
+                bottom: 0;
+                margin-top: 30px;
+                display: none; /* Often hidden on mobile to rely on standard scrolling */
+            }
+            
+            /* Center elements */
+            .footer .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer .contact-info a {
+                margin: 0;
+            }
+        }
     </style>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.95/build/spline-viewer.js"></script>
 </head>
@@ -296,8 +338,7 @@
             <p class="description">
                 Geriausias klubas Vilniuje. Prisijunk ir tu!
             </p>
-            
-            </div>
+        </div>
         
         <a href="#schedule" class="scroll-arrow scroll-trigger" aria-label="Scroll to schedule">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
@@ -311,75 +352,77 @@
         
         <h2>Mūsų Tvarkaraštis</h2>
         
-        <table class="schedule-table">
-            <thead>
-                <tr>
-                    <th>Laikas</th>
-                    <th>Pirmadienis</th>
-                    <th>Antradienis</th>
-                    <th>Trečiadienis</th>
-                    <th>Ketvirtadienis</th>
-                    <th>Penktadienis</th>
-                    <th>Šeštadienis</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="time-col">9:00 - 10:00</td>
-                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="time-col">10:00 - 11:00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
-                </tr>
-                <tr>
-                    <td class="time-col">15:30 - 16:30</td>
-                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="time-col">17:00 - 18:30</td>
-                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="time-col">18:00 - 19:00</td>
-                    <td></td>
-                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="time-col">19:00 - 20:00</td>
-                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                    <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="schedule-table-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Laikas</th>
+                        <th>Pirmadienis</th>
+                        <th>Antradienis</th>
+                        <th>Trečiadienis</th>
+                        <th>Ketvirtadienis</th>
+                        <th>Penktadienis</th>
+                        <th>Šeštadienis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-col">9:00 - 10:00</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">10:00 - 11:00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">15:30 - 16:30</td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">17:00 - 18:30</td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">18:00 - 19:00</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">19:00 - 20:00</td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
     <footer class="footer">
