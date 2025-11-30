@@ -28,7 +28,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Hide potential scrollbar from background effects */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            position: relative; /* Needed for absolute positioning of arrow */
         }
 
         /* --- Header/Navigation Bar --- */
@@ -47,7 +48,6 @@
             font-weight: 700;
             text-decoration: none;
             color: var(--primary-text);
-            /* Replace with your actual logo text */
         }
 
         .nav-links a {
@@ -87,20 +87,22 @@
             border: none;
         }
 
-        /* --- Main Content Area --- */
+        /* --- Main Content Area (Hero Section) --- */
         .main-content {
             flex-grow: 1;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Aligns content to the left/center of the visual */
-            padding-left: 10%; /* Adjust as needed for alignment */
+            justify-content: flex-start;
+            padding-left: 10%;
             position: relative;
             z-index: 5;
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            padding-top: 80px; /* Offset for fixed header */
         }
 
         .hero-text-container {
             max-width: 500px;
-            padding-bottom: 50px; /* Space from the bottom of the viewport/dog graphic */
+            padding-bottom: 50px;
         }
 
         .main-heading {
@@ -142,31 +144,83 @@
             border: 1px solid var(--primary-text);
         }
 
-        /* --- Placeholder for large visual element (Dog/3D Model) --- */
+        /* --- Visual Placeholder & Background Effects --- */
         .visual-placeholder {
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 60%; /* Occupy the right side */
+            width: 60%;
             height: 90%;
-            /* This is where your large visual would go. For now, it's just a placeholder */
+            /* For now, just a placeholder */
         }
 
-        /* --- Placeholder for abstract background (bubbles/stars) --- */
-        /* Note: Creating the complex animated background requires more advanced CSS/JS, 
-           but this adds a slight visual effect. */
         .background-effect {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Allows clicks to pass through */
+            pointer-events: none;
             opacity: 0.5;
             background: radial-gradient(circle at 10% 20%, rgba(85, 90, 255, 0.1) 0%, transparent 40%),
                         radial-gradient(circle at 80% 90%, rgba(255, 0, 150, 0.1) 0%, transparent 40%);
         }
 
+        /* --- Scroll Arrow --- */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 30px; /* Distance from bottom of viewport */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
+            animation: bounce 1.5s infinite; /* Gentle bouncing animation */
+            transition: opacity 0.3s ease;
+            color: var(--primary-text); /* Color of the arrow */
+        }
+
+        .scroll-arrow:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* --- Schedule Section Placeholder --- */
+        .schedule-section {
+            background-color: #1a1a2e; /* A slightly different dark background for distinction */
+            padding: 80px 40px;
+            min-height: 100vh; /* Ensure it's tall enough to scroll to */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .schedule-section h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: var(--primary-text);
+        }
+
+        .schedule-section p {
+            font-size: 18px;
+            color: var(--secondary-text);
+            max-width: 800px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -174,7 +228,7 @@
     <div class="background-effect"></div>
 
     <header class="header">
-        <a href="#" class="logo">YOU MEME</a> <nav class="nav-links">
+        <a href="#" class="logo">YOUMEME</a> <nav class="nav-links">
             <a href="#">Introduction</a>
             <a href="#">Reviews</a>
             <a href="#">Community</a>
@@ -190,12 +244,12 @@
         </div>
     </header>
 
-    <main class="main-content">
+    <main class="main-content" id="home">
         <div class="hero-text-container">
             <h1 class="main-heading">YOUMEME</h1>
             
             <p class="description">
-                **Geriausias klubas Vilniuje. Prisijunk ir tu!**
+                Geriausias klubas Vilniuje. Prisijunk ir tu!
             </p>
             
             <div class="hero-buttons">
@@ -207,6 +261,39 @@
 
     <div class="visual-placeholder">
         </div>
+
+    <a href="#schedule" class="scroll-arrow" aria-label="Scroll to schedule">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+    </a>
+
+    <section id="schedule" class="schedule-section">
+        <h2>Mūsų Tvarkaraštis</h2>
+        <p>Čia rasite visą informaciją apie mūsų treniruočių ir užsiėmimų tvarkaraštį.</p>
+        <p> (A future table or image will go here) </p>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollArrow = document.querySelector('.scroll-arrow');
+
+            if (scrollArrow) {
+                scrollArrow.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default jump behavior
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth' // Smooth scroll effect
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
