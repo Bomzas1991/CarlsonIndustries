@@ -25,7 +25,7 @@
         .trainers-container {
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 80px;
             flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
@@ -35,6 +35,9 @@
             position: relative;
             width: 300px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: transform 0.3s ease;
         }
 
@@ -42,58 +45,98 @@
             transform: scale(1.05);
         }
 
+        /* Rectangle behind the image */
         .trainer-rectangle {
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 0;
-        }
-
-        .trainer-card:hover .trainer-rectangle {
-            transform: scale(1.08);
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
-        }
-
-        .trainer-image {
             position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Red/Blue rectangles swapped sides */
+        .miroslav-rectangle {
+            background-color: rgba(220, 20, 60, 0.7);
+        }
+
+        .jaroslav-rectangle {
+            background-color: rgba(65, 105, 225, 0.7);
+        }
+
+        /* Trainer image at bottom touching rectangle */
+        .trainer-image {
             width: 100%;
             height: auto;
             border-radius: 15px;
-            display: block;
+            margin-top: -60px; /* overlap rectangle slightly */
             z-index: 1;
-            object-fit: cover;
         }
 
+        /* Name box above rectangle */
         .trainer-name {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 24px;
+            top: -30px;
+            font-size: 20px;
             font-weight: 700;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 12px;
             z-index: 2;
         }
 
         .miroslav-name {
-            background-color: rgba(220, 20, 60, 0.8);
+            background-color: rgba(65, 105, 225, 0.8);
             color: #FFFFFF;
+            left: 20px;
         }
 
         .jaroslav-name {
-            background-color: rgba(65, 105, 225, 0.8);
+            background-color: rgba(220, 20, 60, 0.8);
             color: #FFFFFF;
+            right: 20px;
+        }
+
+        /* Hidden description text */
+        .trainer-info {
+            position: absolute;
+            bottom: -180px;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.8);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            color: #FFFFFF;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Show description when opposite card is hovered */
+        .trainer-card.jaroslav-card:hover ~ .trainer-card.miroslav-card .trainer-info,
+        .trainer-card.miroslav-card:hover ~ .trainer-card.jaroslav-card .trainer-info {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
             .trainers-container {
                 flex-direction: column;
-                gap: 40px;
+                gap: 60px;
                 align-items: center;
+            }
+
+            .trainer-name {
+                top: -25px;
+                font-size: 18px;
+            }
+
+            .trainer-info {
+                font-size: 15px;
             }
         }
     </style>
@@ -104,24 +147,36 @@
     <h1>Treneriai</h1>
 
     <div class="trainers-container">
-        <!-- Miroslav Card -->
-        <div class="trainer-card">
-            <div class="trainer-rectangle"></div>
+        <!-- Miroslav Card (left) -->
+        <div class="trainer-card miroslav-card">
+            <div class="trainer-rectangle miroslav-rectangle"></div>
             <img src="miroslav.png" alt="Miroslav" class="trainer-image">
             <div class="trainer-name miroslav-name">Miroslav</div>
+            <div class="trainer-info">
+                <strong>Pareigos:</strong> Antrasis treneris.<br>
+                <strong>Patirtis:</strong> 8 metai.<br>
+                <strong>Aprašymas:</strong> Miroslavas yra jaunesnis, bet jau patyręs treneris. 
+                Jis yra jaunimo grupių lyderis ir specializuojasi technikos tobulinime. 
+                Jo patirtis rodo, kad jis daugiausia dėmesio skiria naujos kartos boksininkų ugdymui.
+            </div>
         </div>
 
-        <!-- Jaroslav Card -->
-        <div class="trainer-card">
-            <div class="trainer-rectangle"></div>
+        <!-- Jaroslav Card (right) -->
+        <div class="trainer-card jaroslav-card">
+            <div class="trainer-rectangle jaroslav-rectangle"></div>
             <img src="jaroslav.png" alt="Jaroslav" class="trainer-image">
             <div class="trainer-name jaroslav-name">Jaroslav</div>
+            <div class="trainer-info">
+                <strong>Pareigos:</strong> Vyriausiasis treneris.<br>
+                <strong>Patirtis:</strong> 15 metų.<br>
+                <strong>Aprašymas:</strong> Jaroslavas yra patyręs bokso specialistas, kuris yra pasiekęs aukštų rezultatų ir yra Lietuvos čempionatų nugalėtojas. 
+                Jis yra atsakingas už bendrą klubo sportinę programą.
+            </div>
         </div>
     </div>
 
 </body>
 </html>
-
 
 
 
