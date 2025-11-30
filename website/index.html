@@ -12,16 +12,16 @@
             --secondary-text: #CCCCCC; 
             --header-text-dark: #666666; 
             --dark-background: #0D0D15; 
-            --schedule-background: #2E1A1A; 
+            --schedule-background: #2E1A1A; /* Still reddish for schedule */
             --footer-background: #181818; 
-            --accent-color: #D62828; 
+            --accent-color: #D62828; /* VIBRANT RED accent remains */
             --accent-hover: #E84F4F; 
 
-            /* Retrofuturism Colors */
-            --retro-red: rgba(214, 40, 40, 0.4); 
-            --retro-orange: rgba(255, 140, 0, 0.3); 
-            --retro-yellow: rgba(255, 215, 0, 0.2); 
-            --retro-dark: rgba(0, 0, 0, 0.8); 
+            /* UPDATED: Retrofuturism Colors (Blue & Red) */
+            --retro-blue: rgba(65, 105, 225, 0.4); /* Royal Blue, faded */
+            --retro-red: rgba(220, 20, 60, 0.3); /* Crimson, faded */
+            --retro-purple: rgba(138, 43, 226, 0.2); /* Blue-Violet, faded */
+            --retro-dark-overlay: rgba(0, 0, 0, 0.7); /* Slightly darker overlay for depth */
         }
 
         * {
@@ -62,25 +62,27 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            filter: blur(100px); 
+            filter: blur(80px); /* Slightly less blur, can adjust */
             opacity: 0.6;
             animation: retrofuturism-move 30s infinite alternate ease-in-out;
+            /* UPDATED: Blue/Red gradients, SMALLER sizes */
             background: 
-                radial-gradient(circle at 20% 30%, var(--retro-red) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, var(--retro-orange) 0%, transparent 50%),
-                radial-gradient(circle at 40% 90%, var(--retro-yellow) 0%, transparent 50%);
-            background-size: 50% 50%, 40% 40%, 60% 60%; 
+                radial-gradient(circle at 20% 30%, var(--retro-blue) 0%, transparent 70%),
+                radial-gradient(circle at 70% 80%, var(--retro-red) 0%, transparent 70%),
+                radial-gradient(circle at 40% 90%, var(--retro-purple) 0%, transparent 70%);
+            background-size: 30% 30%, 25% 25%, 35% 35%; /* Significantly smaller blobs */
         }
 
         .retrofuturism-background::after {
             animation-delay: 15s; 
-            filter: blur(80px); 
+            filter: blur(60px); /* Slightly different blur */
             opacity: 0.5;
+            /* UPDATED: Blue/Red gradients, SMALLER sizes */
             background: 
-                radial-gradient(circle at 80% 20%, var(--retro-orange) 0%, transparent 50%),
-                radial-gradient(circle at 30% 60%, var(--retro-yellow) 0%, transparent 50%),
-                radial-gradient(circle at 90% 10%, var(--retro-red) 0%, transparent 50%);
-            background-size: 60% 60%, 50% 50%, 45% 45%;
+                radial-gradient(circle at 80% 20%, var(--retro-red) 0%, transparent 70%),
+                radial-gradient(circle at 30% 60%, var(--retro-purple) 0%, transparent 70%),
+                radial-gradient(circle at 90% 10%, var(--retro-blue) 0%, transparent 70%);
+            background-size: 35% 35%, 30% 30%, 28% 28%; /* Significantly smaller blobs */
         }
 
         @keyframes retrofuturism-move {
@@ -118,17 +120,16 @@
             transition: padding 0.3s;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--primary-text);
+        /* NEW: Logo Image Styling */
+        .logo-img {
+            height: 40px; /* Adjust as needed for your logo size */
+            width: auto;
+            display: block; /* Ensure it behaves like a block element */
         }
 
-        /* UPDATED: Simplified Navigation Links */
         .nav-links {
              display: flex; 
-             gap: 30px; /* Space out the two links */
+             gap: 30px; 
         }
         
         .nav-links a {
@@ -153,11 +154,9 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s ease, border-color 0.3s ease;
-            white-space: nowrap; /* Prevent "Turnyrai" from wrapping */
+            white-space: nowrap; 
         }
         
-        /* DELETED: .doc-button style is no longer needed */
-
         .launch-button {
             background-color: var(--accent-color);
             color: var(--primary-text);
@@ -302,12 +301,12 @@
             }
             
             .nav-links {
-                gap: 20px; /* Adjust gap for mobile */
+                gap: 20px; 
                 justify-content: center;
             }
             
             .nav-links a {
-                margin: 0; /* Remove extra margin */
+                margin: 0; 
             }
             
             .action-buttons {
@@ -342,6 +341,11 @@
             .footer .contact-info a {
                 margin: 0;
             }
+            
+            /* Adjust logo size on mobile */
+            .logo-img {
+                height: 30px; 
+            }
         }
     </style>
 </head>
@@ -350,7 +354,9 @@
     <div class="retrofuturism-background"></div>
 
     <header class="header">
-        <a href="#" class="logo">ROYAL</a> 
+        <a href="#" class="logo-link">
+            <img src="royallogo.png" alt="Royal Boxing Logo" class="logo-img">
+        </a> 
         <nav class="nav-links">
             <a href="istorija.html">Istorija</a>
             <a href="treneriai.html">Treneriai</a>
@@ -507,5 +513,6 @@
 
 </body>
 </html>
+
 
 
