@@ -9,10 +9,12 @@
         /* Basic Reset and Variables */
         :root {
             --primary-text: #FFFFFF;
-            --secondary-text: #B0B0B0;
+            --secondary-text: #CCCCCC; /* Lighter secondary text for better contrast */
             --dark-background: #0D0D15; 
             --schedule-background: #1a1a2e;
-            --accent-color: #555AFF; 
+            --footer-background: #181818; /* Dark gray for footer */
+            --accent-color: #D62828; /* VIBRANT RED */
+            --accent-hover: #E84F4F; /* Lighter red for hover */
         }
 
         * {
@@ -30,7 +32,6 @@
             flex-direction: column;
             overflow-x: hidden; 
             position: relative;
-            /* REMOVED: scroll-behavior: smooth; -- We will use JS for custom slow scrolling */
         }
 
         /* --- Spline Background Container --- */
@@ -76,6 +77,10 @@
             transition: color 0.3s ease;
         }
 
+        .nav-links a:hover {
+            color: var(--accent-color); /* Highlight navigation links with accent color */
+        }
+
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -86,7 +91,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .doc-button {
@@ -94,11 +99,20 @@
             color: var(--primary-text);
             border: 1px solid var(--primary-text);
         }
+        
+        .doc-button:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
 
         .launch-button {
             background-color: var(--accent-color);
             color: var(--primary-text);
             border: none;
+        }
+        
+        .launch-button:hover {
+            background-color: var(--accent-hover);
         }
 
         /* --- Main Content Area (Hero Section) --- */
@@ -120,27 +134,28 @@
             padding-bottom: 50px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
         }
-
-        .main-heading {
-            font-size: 72px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1;
-        }
-
-        .description {
-            font-size: 20px;
-            color: var(--secondary-text);
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
+        
+        .hero-button.pitch-deck-button {
+            background-color: var(--accent-color); /* Red primary button */
+            color: var(--primary-text);
         }
         
-        /* --- Scroll Arrow (Fixed to bottom of Hero Section) --- */
+        .hero-button.pitch-deck-button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .hero-button.introduction-button {
+            background-color: transparent;
+            color: var(--primary-text);
+            border: 1px solid var(--primary-text);
+        }
+        
+        .hero-button.introduction-button:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* --- Scroll Arrow --- */
         .scroll-arrow {
             position: absolute;
             bottom: 30px; 
@@ -152,27 +167,11 @@
             z-index: 6; 
             animation: bounce 1.5s infinite; 
             transition: opacity 0.3s ease;
-            color: var(--primary-text); 
+            color: var(--primary-text); /* Arrow color remains white */
             text-decoration: none; 
         }
 
-        .scroll-arrow:hover {
-            opacity: 0.8;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* --- Schedule Section Styling --- */
+        /* --- Schedule Section Styling (Unchanged content-wise) --- */
         .schedule-section {
             background-color: var(--schedule-background); 
             padding: 80px 40px;
@@ -186,47 +185,41 @@
             z-index: 5; 
         }
 
-        .schedule-section h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: var(--primary-text);
-            letter-spacing: 1px;
+        .schedule-table th {
+            color: var(--accent-color); /* Table headers use red accent */
         }
         
-        .schedule-table {
-            width: 90%;
-            max-width: 1200px; 
-            border-collapse: collapse;
-            text-align: left;
-            margin-top: 20px;
-            table-layout: fixed; 
+        /* --- Footer Styling --- */
+        .footer {
+            background-color: var(--footer-background); /* Dark gray background */
+            color: var(--secondary-text); /* Light gray text */
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 5; /* Ensure footer is above the fixed background */
+            width: 100%;
         }
 
-        .schedule-table th, .schedule-table td {
-            padding: 18px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            font-weight: 400;
-            word-wrap: break-word;
-            font-size: 15px; 
+        .footer p {
+            margin: 5px 0;
+            font-size: 16px;
         }
-        
-        .schedule-table th {
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-        
-        .schedule-table td {
-            color: var(--primary-text);
-        }
-        
-        .time-col {
-            font-weight: 600;
+
+        .footer .contact-info a {
             color: var(--secondary-text);
-            width: 120px; 
-            padding-left: 25px;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .contact-info a:hover {
+            color: var(--accent-hover);
+        }
+        
+        .footer-heading {
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 15px;
+            font-size: 20px;
         }
 
     </style>
@@ -357,6 +350,14 @@
             </tbody>
         </table>
     </section>
+
+    <footer class="footer">
+        <p class="footer-heading">Susisiekite su mumis</p>
+        <div class="contact-info">
+            <p><strong>JAROSLAV:</strong> <a href="tel:+37065041887">+370 650 41887</a></p>
+            <p><strong>MIROSLAV:</strong> <a href="tel:+37065554400">+370 655 54400</a></p>
+        </div>
+    </footer>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -395,7 +396,7 @@
                     const targetElement = document.querySelector(targetId);
 
                     if (targetElement) {
-                        // Use 1000ms (1 second) duration for a noticeably slower transition
+                        // 1000ms (1 second) duration for slower transition
                         customSmoothScroll(targetElement, 1000); 
                     }
                 });
