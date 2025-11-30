@@ -1,200 +1,466 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Royal Boxing</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Boxing Klubas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <style>
-        /* --- STYLE.CSS CONTENT --- */
+        /* Basic Reset and Variables */
+        :root {
+            --primary-text: #FFFFFF;
+            --secondary-text: #CCCCCC; 
+            --header-text-dark: #666666; 
+            --dark-background: #0D0D15; 
+            --schedule-background: #2A1A2E;
+            --footer-background: #181818; 
+            --accent-color: #D62828; 
+            --accent-hover: #E84F4F; 
+
+            /* Retrofuturism Colors */
+            --retro-blue: rgba(65, 105, 225, 0.4); 
+            --retro-red: rgba(220, 20, 60, 0.3); 
+            --retro-purple: rgba(138, 43, 226, 0.25); 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            margin: 0;
-            background: #0b0b12;
             font-family: 'Sora', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .interactive-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 10%;
+            background-color: var(--dark-background);
+            color: var(--primary-text);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; 
             position: relative;
         }
 
-        .interactive-text {
-            --mx: 50%;
-            --my: 50%;
-            --glow-1: 0 0 30px rgba(65,105,225,0.6);
-            --glow-2: 0 0 80px rgba(220,20,60,0.25);
-
-            font-weight: 800;
-            font-size: clamp(42px, 10vw, 140px);
-            letter-spacing: 0.14em;
-            color: white;
-            position: relative;
-            cursor: pointer;
-            user-select: none;
-            transform-origin: center;
-            margin: 0;
-
-            background-image:
-                radial-gradient(circle at var(--mx) var(--my), rgba(65,105,225,0.18) 0%, transparent 18%),
-                linear-gradient(90deg, rgba(255,255,255,0.95), rgba(240,240,240,0.9) 60%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-
-            text-shadow:
-                0 0 6px rgba(255,255,255,0.10),
-                var(--glow-1),
-                var(--glow-2);
-            filter: drop-shadow(0 8px 24px rgba(0,0,0,0.7));
-
-            transition: transform 280ms cubic-bezier(.2,.9,.2,1), text-shadow 280ms ease;
+        /* --- Retrofuturism Background Animation (Simplified: Only 2–3 lights) --- */
+        .retrofuturism-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+            pointer-events: none; 
+            overflow: hidden; 
+            background-color: var(--dark-background);
         }
 
-        .interactive-text:hover,
-        .interactive-text:focus {
-            transform: translateY(-6px) scale(1.03);
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.18),
-                0 0 40px rgba(65,105,225,0.55),
-                0 0 110px rgba(220,20,60,0.30);
-            outline: none;
-        }
-
-        .interactive-text:active {
-            transform: translateY(-2px) scale(0.99);
-        }
-
-        .interactive-text::after {
+        .retrofuturism-background::before,
+        .retrofuturism-background::after {
             content: '';
             position: absolute;
-            inset: 0;
-            pointer-events: none;
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            filter: blur(55px);
+            opacity: 0.45;
+            animation: retrofuturism-move 32s infinite alternate ease-in-out;
+        }
+
+        /* Only 2 lights here */
+        .retrofuturism-background::before {
             background:
-                radial-gradient(closest-side at var(--mx) var(--my), rgba(65,105,225,0.08), transparent 25%),
-                radial-gradient(closest-side at calc(var(--mx) + 10%) calc(var(--my) - 20%), rgba(220,20,60,0.06), transparent 18%);
-            mix-blend-mode: screen;
-            transition: opacity 200ms ease;
+                radial-gradient(circle at 25% 40%, var(--retro-blue) 0%, transparent 60%),
+                radial-gradient(circle at 70% 70%, var(--retro-red) 0%, transparent 60%);
         }
 
-        .particle {
+        /* Only 1 light here */
+        .retrofuturism-background::after {
+            animation-delay: 12s;
+            filter: blur(45px);
+            opacity: 0.35;
+            background:
+                radial-gradient(circle at 60% 25%, var(--retro-purple) 0%, transparent 65%);
+        }
+
+        @keyframes retrofuturism-move {
+            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.6; }
+            50% { transform: translate(8%, -10%) rotate(2deg); opacity: 0.7; }
+            100% { transform: translate(-6%, 8%) rotate(-2deg); opacity: 0.6; }
+        }
+
+        /* --- Header/Navigation Bar --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            width: 100%;
+            position: fixed; 
+            z-index: 10;
+            transition: padding 0.3s;
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            display: block; 
+        }
+
+        .nav-links {
+             display: flex; 
+             gap: 30px; 
+        }
+        
+        .nav-links a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color); 
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; 
+        }
+        
+        .launch-button {
+            background-color: var(--accent-color);
+            color: var(--primary-text);
+            border: none;
+        }
+        
+        .launch-button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* --- Main Content (Hero Section) --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 10%;
+            position: relative;
+            z-index: 5; 
+            min-height: 100vh; 
+            padding-top: 80px;
+            transition: padding-left 0.3s;
+        }
+
+        .hero-text-container {
+            max-width: 600px;
+            padding-bottom: 50px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+        }
+
+        .main-heading {
+            font-size: 88px; 
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1;
+        }
+
+        .description {
+            font-size: 24px;
+            color: var(--secondary-text);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* --- Scroll Arrow --- */
+        .scroll-arrow {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 50;
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-
-            background: radial-gradient(circle,
-                rgba(255,255,255,1) 0%,
-                rgba(255,255,255,0.9) 30%,
-                rgba(255,255,255,0.08) 70%);
-            box-shadow:
-                0 0 8px rgba(255,255,255,0.8),
-                0 0 18px rgba(255,215,50,0.3);
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 6;
+            animation: bounce 1.5s infinite;
+            color: var(--primary-text);
+            text-decoration: none;
         }
 
-        .particle.small { width: 4px; height: 4px; }
-        .particle.large { width: 9px; height: 9px; }
+        /* Bouncing Animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* --- Schedule Section --- */
+        .schedule-section {
+            background-color: var(--schedule-background);
+            padding: 80px 40px;
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .schedule-table-container {
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto; 
+            padding-bottom: 10px; 
+        }
+
+        .schedule-table {
+            min-width: 800px;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 18px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+        }
+
+        .schedule-table th {
+            color: var(--header-text-dark); 
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .time-col {
+            font-weight: 600;
+            color: var(--secondary-text);
+            width: 120px; 
+            padding-left: 25px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--footer-background); 
+            color: var(--secondary-text); 
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 5; 
+            width: 100%;
+        }
+
+        .footer .contact-info a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        /* --- Mobile Optimization --- */
+        @media (max-width: 900px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+                position: static;
+            }
+
+            .main-content {
+                min-height: 80vh; 
+                padding: 120px 5% 50px 5%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .main-heading {
+                font-size: 56px;
+            }
+
+            .description {
+                font-size: 18px;
+            }
+
+            .scroll-arrow {
+                display: none;
+            }
+
+            .footer .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .logo-img {
+                height: 45px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="retrofuturism-background"></div>
 
-    <div class="interactive-wrapper">
-        <h1 id="royal-text" class="interactive-text" role="button" tabindex="0">
-            ROYAL BOXING
-        </h1>
-    </div>
+    <header class="header">
+        <a href="#" class="logo-link">
+            <img src="royallogo.png" alt="Royal Boxing Logo" class="logo-img">
+        </a> 
+        <nav class="nav-links">
+            <a href="istorija.html">Istorija</a>
+            <a href="treneriai.html">Treneriai</a>
+        </nav>
+        <div class="action-buttons">
+            <a href="https://boksofederacija.lt/kalendorius/" class="nav-button launch-button" target="_blank">Turnyrai</a>
+        </div>
+    </header>
+
+    <main class="main-content" id="home">
+        <div class="hero-text-container">
+            <h1 class="main-heading">ROYAL BOXING</h1>
+            <p class="description">Geriausias bokso klubas Vilniuje. Prisijunk ir tu!</p>
+        </div>
+
+        <a href="#schedule" class="scroll-arrow scroll-trigger" aria-label="Scroll to schedule">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </a>
+    </main>
+
+    <section id="schedule" class="schedule-section">
+        <h2>Mūsų Tvarkaraštis</h2>
+
+        <div class="schedule-table-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Laikas</th>
+                        <th>Pirmadienis</th>
+                        <th>Antradienis</th>
+                        <th>Trečiadienis</th>
+                        <th>Ketvirtadienis</th>
+                        <th>Penktadienis</th>
+                        <th>Šeštadienis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-col">9:00 - 10:00</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td>Rytinė treniruotė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">10:00 - 11:00</td>
+                        <td></td><td></td><td></td><td></td><td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">15:30 - 16:30</td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Vaikų grupė Jaroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">17:00 - 18:30</td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Jaunimo grupė Jaroslav/Miroslav 60,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">18:00 - 19:00</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">19:00 - 20:00</td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                        <td>Suaugusių grupė Jaroslav/Miroslav 70,00 Eur/mėn</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-heading">Susisiekite su mumis</p>
+        <div class="contact-info">
+            <p><strong>JAROSLAV:</strong> <a href="tel:+37065041887">+370 650 41887</a></p>
+            <p><strong>MIROSLAV:</strong> <a href="tel:+37065554400">+370 655 54400</a></p>
+        </div>
+    </footer>
 
     <script>
-        /* --- JAVASCRIPT --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollTriggers = document.querySelectorAll('.scroll-trigger');
 
-        const title = document.getElementById('royal-text');
+            function customSmoothScroll(targetElement, duration = 1000) {
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                let startTime = null;
 
-        function handleMove(e) {
-            const rect = title.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            title.style.setProperty('--mx', `${x}%`);
-            title.style.setProperty('--my`, `${y}%`);
-        }
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
 
-        function handleTouchMove(e) {
-            if (!e.touches[0]) return;
-            handleMove(e.touches[0]);
-        }
+                function easeInOutQuad(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
 
-        function spawnParticles(event) {
-            const rect = title.getBoundingClientRect();
-            const clickX = event.clientX ?? event.touches?.[0].clientX;
-            const clickY = event.clientY ?? event.touches?.[0].clientY;
+                requestAnimationFrame(animation);
+            }
 
-            const count = 18;
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('span');
-                p.className = 'particle ' + (Math.random() > 0.7 ? 'large' : (Math.random() > 0.6 ? 'small' : ''));
-                document.body.appendChild(p);
+            scrollTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
 
-                p.style.left = `${clickX}px`;
-                p.style.top = `${clickY}px`;
-
-                const angle = Math.random() * Math.PI * 2;
-                const dist = 40 + Math.random() * 110;
-                const tx = clickX + Math.cos(angle) * dist;
-                const ty = clickY + Math.sin(angle) * dist - (10 + Math.random()*40);
-
-                const duration = 650 + Math.random() * 500;
-                const delay = Math.random() * 60;
-
-                p.animate([
-                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
-                    { transform: `translate(${tx - clickX}px, ${ty - clickY}px) scale(${0.4 + Math.random()*0.9})`, opacity: 0 }
-                ], {
-                    duration,
-                    delay,
-                    easing: 'cubic-bezier(.2,.9,.2,1)'
+                    if (targetElement) {
+                        customSmoothScroll(targetElement, 1000);
+                    }
                 });
-
-                setTimeout(() => p.remove(), duration + delay + 50);
-            }
-        }
-
-        function handleKey(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                const rect = title.getBoundingClientRect();
-                const fake = {
-                    clientX: rect.left + rect.width/2,
-                    clientY: rect.top + rect.height/2
-                };
-                spawnParticles(fake);
-            }
-        }
-
-        title.addEventListener('mousemove', handleMove);
-        title.addEventListener('touchmove', handleTouchMove, { passive: true });
-        title.addEventListener('click', spawnParticles);
-        title.addEventListener('touchstart', e => spawnParticles(e.touches[0]), { passive: true });
-        title.addEventListener('keydown', handleKey);
-
-        title.addEventListener('mouseleave', () => {
-            title.style.setProperty('--mx', '50%');
-            title.style.setProperty('--my', '50%');
+            });
         });
     </script>
 
 </body>
 </html>
+
 
 
 
