@@ -5,25 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carlson Industries</title>
   <style>
+    /* Base styles */
     body {
       margin: 0;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      background: linear-gradient(135deg, orange 50%, white 50%);
       font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, orange 50%, white 50%);
     }
 
+    /* Hero title */
     h1 {
-      font-size: 64px;
+      font-size: clamp(64px, 12vw, 120px);
       text-transform: uppercase;
       color: #ff6a00;
-      margin-bottom: 50px;
       text-align: center;
+      margin-top: 80px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.35);
     }
 
+    /* Button */
     button {
       padding: 15px 30px;
       font-size: 18px;
@@ -33,17 +37,48 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 40px;
     }
 
     button:hover {
       background-color: darkorange;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 16px;
+      background: rgba(255,255,255,0.25);
+      color: #000;
+      font-weight: bold;
+      backdrop-filter: blur(5px);
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #ff6a00;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+  <!-- Hero / Main content -->
   <h1>Carlson Industries</h1>
   <button onclick="location.href='newton.html'">Go to Newton's Laws</button>
+
+  <!-- Footer -->
+  <footer>
+    Contacts: TikTok - <a href="https://www.tiktok.com/@kristinhoeditz" target="_blank">@kristinhoeditz</a>
+  </footer>
 </body>
 </html>
+
+
 
