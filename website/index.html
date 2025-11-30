@@ -18,10 +18,10 @@
             --accent-hover: #E84F4F; 
 
             /* Retrofuturism Colors */
-            --retro-red: rgba(214, 40, 40, 0.4); /* Faded red */
-            --retro-orange: rgba(255, 140, 0, 0.3); /* Faded orange */
-            --retro-yellow: rgba(255, 215, 0, 0.2); /* Faded yellow */
-            --retro-dark: rgba(0, 0, 0, 0.8); /* Dark overlay for depth */
+            --retro-red: rgba(214, 40, 40, 0.4); 
+            --retro-orange: rgba(255, 140, 0, 0.3); 
+            --retro-yellow: rgba(255, 215, 0, 0.2); 
+            --retro-dark: rgba(0, 0, 0, 0.8); 
         }
 
         * {
@@ -48,33 +48,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Behind content */
-            pointer-events: none; /* Allow clicks to pass through */
-            overflow: hidden; /* Hide overflow from moving gradients */
-            background-color: var(--dark-background); /* Base dark for the background */
+            z-index: 1; 
+            pointer-events: none; 
+            overflow: hidden; 
+            background-color: var(--dark-background); 
         }
 
         .retrofuturism-background::before,
         .retrofuturism-background::after {
             content: '';
             position: absolute;
-            width: 200%; /* Larger than viewport to allow movement */
+            width: 200%; 
             height: 200%;
             top: -50%;
             left: -50%;
-            filter: blur(100px); /* Soft blur for glowing effect */
+            filter: blur(100px); 
             opacity: 0.6;
             animation: retrofuturism-move 30s infinite alternate ease-in-out;
             background: 
                 radial-gradient(circle at 20% 30%, var(--retro-red) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, var(--retro-orange) 0%, transparent 50%),
                 radial-gradient(circle at 40% 90%, var(--retro-yellow) 0%, transparent 50%);
-            background-size: 50% 50%, 40% 40%, 60% 60%; /* Size of gradient blobs */
+            background-size: 50% 50%, 40% 40%, 60% 60%; 
         }
 
         .retrofuturism-background::after {
-            animation-delay: 15s; /* Stagger the animation */
-            filter: blur(80px); /* Slightly different blur */
+            animation-delay: 15s; 
+            filter: blur(80px); 
             opacity: 0.5;
             background: 
                 radial-gradient(circle at 80% 20%, var(--retro-orange) 0%, transparent 50%),
@@ -125,14 +125,15 @@
             color: var(--primary-text);
         }
 
+        /* UPDATED: Simplified Navigation Links */
         .nav-links {
              display: flex; 
+             gap: 30px; /* Space out the two links */
         }
         
         .nav-links a {
             color: var(--secondary-text);
             text-decoration: none;
-            margin-left: 30px;
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -152,13 +153,10 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            white-space: nowrap; /* Prevent "Turnyrai" from wrapping */
         }
-
-        .doc-button {
-            background-color: transparent;
-            color: var(--primary-text);
-            border: 1px solid var(--primary-text);
-        }
+        
+        /* DELETED: .doc-button style is no longer needed */
 
         .launch-button {
             background-color: var(--accent-color);
@@ -166,6 +164,10 @@
             border: none;
         }
         
+        .launch-button:hover {
+            background-color: var(--accent-hover);
+        }
+
         /* --- Main Content Area (Hero Section) --- */
         .main-content {
             flex-grow: 1;
@@ -177,14 +179,14 @@
             z-index: 5; 
             min-height: 100vh; 
             padding-top: 80px; 
-            background-color: transparent; /* Ensure content background is transparent to see effect */
+            background-color: transparent; 
             transition: padding-left 0.3s;
         }
 
         .hero-text-container {
             max-width: 600px; 
             padding-bottom: 50px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Stronger shadow for readability */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); 
         }
 
         .main-heading {
@@ -300,12 +302,12 @@
             }
             
             .nav-links {
-                flex-wrap: wrap; 
+                gap: 20px; /* Adjust gap for mobile */
                 justify-content: center;
             }
             
             .nav-links a {
-                margin: 5px 10px;
+                margin: 0; /* Remove extra margin */
             }
             
             .action-buttons {
@@ -319,11 +321,6 @@
                 text-align: center;
             }
 
-            .hero-text-container {
-                max-width: 100%;
-                padding-bottom: 20px;
-            }
-
             .main-heading {
                 font-size: 56px; 
             }
@@ -331,11 +328,8 @@
             .description {
                 font-size: 18px; 
             }
-
+            
             .scroll-arrow {
-                position: relative;
-                bottom: 0;
-                margin-top: 30px;
                 display: none; 
             }
             
@@ -358,18 +352,12 @@
     <header class="header">
         <a href="#" class="logo">ROYAL</a> 
         <nav class="nav-links">
-            <a href="#">Introduction</a>
-            <a href="#">Reviews</a>
-            <a href="#">Community</a>
-            <a href="#">Platform</a>
-            <a href="#">Contents</a>
-            <a href="#">Team</a>
-            <a href="#">Roadmap</a>
+            <a href="istorija.html">Istorija</a>
+            <a href="treneriai.html">Treneriai</a>
         </nav>
         
         <div class="action-buttons">
-            <a href="#" class="nav-button doc-button">Documentation</a>
-            <a href="#" class="nav-button launch-button">Launch App</a>
+            <a href="https://boksofederacija.lt/kalendorius/" class="nav-button launch-button" target="_blank" rel="noopener noreferrer">Turnyrai</a>
         </div>
     </header>
 
@@ -519,4 +507,5 @@
 
 </body>
 </html>
+
 
