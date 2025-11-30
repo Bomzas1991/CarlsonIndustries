@@ -10,12 +10,18 @@
         :root {
             --primary-text: #FFFFFF;
             --secondary-text: #CCCCCC; 
-            --header-text-dark: #666666; /* Dark Gray for table headers */
+            --header-text-dark: #666666; 
             --dark-background: #0D0D15; 
             --schedule-background: #2E1A1A; 
             --footer-background: #181818; 
             --accent-color: #D62828; 
             --accent-hover: #E84F4F; 
+
+            /* Retrofuturism Colors */
+            --retro-red: rgba(214, 40, 40, 0.4); /* Faded red */
+            --retro-orange: rgba(255, 140, 0, 0.3); /* Faded orange */
+            --retro-yellow: rgba(255, 215, 0, 0.2); /* Faded yellow */
+            --retro-dark: rgba(0, 0, 0, 0.8); /* Dark overlay for depth */
         }
 
         * {
@@ -35,21 +41,69 @@
             position: relative;
         }
 
-        /* --- Spline Background Container --- */
-        #spline-background {
-            position: fixed; 
+        /* --- Retrofuturism Background Animation --- */
+        .retrofuturism-background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; 
-            pointer-events: none; 
+            z-index: 1; /* Behind content */
+            pointer-events: none; /* Allow clicks to pass through */
+            overflow: hidden; /* Hide overflow from moving gradients */
+            background-color: var(--dark-background); /* Base dark for the background */
         }
-        
-        #spline-background canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
+
+        .retrofuturism-background::before,
+        .retrofuturism-background::after {
+            content: '';
+            position: absolute;
+            width: 200%; /* Larger than viewport to allow movement */
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            filter: blur(100px); /* Soft blur for glowing effect */
+            opacity: 0.6;
+            animation: retrofuturism-move 30s infinite alternate ease-in-out;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--retro-red) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, var(--retro-orange) 0%, transparent 50%),
+                radial-gradient(circle at 40% 90%, var(--retro-yellow) 0%, transparent 50%);
+            background-size: 50% 50%, 40% 40%, 60% 60%; /* Size of gradient blobs */
+        }
+
+        .retrofuturism-background::after {
+            animation-delay: 15s; /* Stagger the animation */
+            filter: blur(80px); /* Slightly different blur */
+            opacity: 0.5;
+            background: 
+                radial-gradient(circle at 80% 20%, var(--retro-orange) 0%, transparent 50%),
+                radial-gradient(circle at 30% 60%, var(--retro-yellow) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, var(--retro-red) 0%, transparent 50%);
+            background-size: 60% 60%, 50% 50%, 45% 45%;
+        }
+
+        @keyframes retrofuturism-move {
+            0% {
+                transform: translate(0%, 0%) rotate(0deg);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translate(10%, -10%) rotate(5deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(0%, 10%) rotate(0deg);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translate(-10%, 5%) rotate(-5deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(0%, 0%) rotate(0deg);
+                opacity: 0.6;
+            }
         }
 
         /* --- Header/Navigation Bar --- */
@@ -72,7 +126,7 @@
         }
 
         .nav-links {
-             display: flex; /* Ensure links are flexible */
+             display: flex; 
         }
         
         .nav-links a {
@@ -123,14 +177,14 @@
             z-index: 5; 
             min-height: 100vh; 
             padding-top: 80px; 
-            background-color: transparent; 
+            background-color: transparent; /* Ensure content background is transparent to see effect */
             transition: padding-left 0.3s;
         }
 
         .hero-text-container {
             max-width: 600px; 
             padding-bottom: 50px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Stronger shadow for readability */
         }
 
         .main-heading {
@@ -178,16 +232,15 @@
             z-index: 5; 
         }
         
-        /* Schedule Table Container for Horizontal Scrolling */
         .schedule-table-container {
             width: 100%;
             max-width: 1200px;
-            overflow-x: auto; /* Enable horizontal scroll on small screens */
-            padding-bottom: 10px; /* Space for scroll bar */
+            overflow-x: auto; 
+            padding-bottom: 10px; 
         }
 
         .schedule-table {
-            min-width: 800px; /* Minimum width to prevent collapsing on mobile */
+            min-width: 800px; 
             width: 100%;
             border-collapse: collapse;
             text-align: left;
@@ -203,7 +256,6 @@
             font-size: 15px; 
         }
         
-        /* NEW: Dark Gray Text for Table Headers */
         .schedule-table th {
             color: var(--header-text-dark); 
             font-weight: 600;
@@ -236,7 +288,7 @@
         }
 
         /* ==================================== */
-        /* MOBILE OPTIMIZATION         */
+        /* MOBILE OPTIMIZATION                */
         /* ==================================== */
         @media (max-width: 900px) {
             
@@ -244,11 +296,11 @@
                 padding: 15px 20px;
                 flex-direction: column;
                 gap: 10px;
-                position: static; /* Unfix header on small screen */
+                position: static; 
             }
             
             .nav-links {
-                flex-wrap: wrap; /* Wrap links on multiple lines */
+                flex-wrap: wrap; 
                 justify-content: center;
             }
             
@@ -262,7 +314,7 @@
             
             .main-content {
                 min-height: 80vh; 
-                padding: 120px 5% 50px 5%; /* Adjust padding for centered look */
+                padding: 120px 5% 50px 5%; 
                 justify-content: center;
                 text-align: center;
             }
@@ -273,22 +325,20 @@
             }
 
             .main-heading {
-                font-size: 56px; /* Smaller heading on mobile */
+                font-size: 56px; 
             }
 
             .description {
-                font-size: 18px; /* Smaller description on mobile */
+                font-size: 18px; 
             }
 
-            /* Move arrow back to standard flow if header is static */
             .scroll-arrow {
                 position: relative;
                 bottom: 0;
                 margin-top: 30px;
-                display: none; /* Often hidden on mobile to rely on standard scrolling */
+                display: none; 
             }
             
-            /* Center elements */
             .footer .contact-info {
                 display: flex;
                 flex-direction: column;
@@ -300,18 +350,10 @@
             }
         }
     </style>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.95/build/spline-viewer.js"></script>
 </head>
 <body>
     
-    <div id="spline-background">
-        <spline-viewer 
-            url="https://prod.spline.design/z1LsC4KIgLPYxKux/scene.splinecode"
-            loading-anim
-            shadows
-            touch
-        ></spline-viewer>
-    </div>
+    <div class="retrofuturism-background"></div>
 
     <header class="header">
         <a href="#" class="logo">ROYAL</a> 
@@ -437,7 +479,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const scrollTriggers = document.querySelectorAll('.scroll-trigger');
 
-            // Function to perform custom smooth scroll
             function customSmoothScroll(targetElement, duration = 1000) {
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                 const startPosition = window.pageYOffset;
@@ -452,7 +493,6 @@
                     if (timeElapsed < duration) requestAnimationFrame(animation);
                 }
 
-                // Easing function (Quadratic) for a smooth start/end
                 function easeInOutQuad(t, b, c, d) {
                     t /= d / 2;
                     if (t < 1) return c / 2 * t * t + b;
@@ -470,7 +510,6 @@
                     const targetElement = document.querySelector(targetId);
 
                     if (targetElement) {
-                        // 1000ms (1 second) duration for slower transition
                         customSmoothScroll(targetElement, 1000); 
                     }
                 });
@@ -480,3 +519,4 @@
 
 </body>
 </html>
+
