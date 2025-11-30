@@ -1,167 +1,140 @@
-/* General Body Styles */
+/* General Body and Background Styles */
 body {
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('webImage.jpg'); /* Your image here */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Page Wrapper with Contour Overlay */
+.page-wrapper {
+    background-image: url('https://www.transparenttextures.com/patterns/contour-map.png');
+    background-color: rgba(245, 245, 240, 0.92); /* Semi-transparent off-white */
+    min-height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+
+    /* CSS Grid Layout */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto auto;
+    gap: 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Grid Item Placement */
+.item-header { grid-column: 1 / -1; grid-row: 1; }
+.item-main { grid-column: 1 / -1; grid-row: 2; text-align: left; align-self: center; }
+.item-coords { grid-column: 2 / -1; grid-row: 3; text-align: right; }
+.item-text-1 { grid-column: 1 / 2; grid-row: 4; }
+.item-text-2 { grid-column: 2 / 3; grid-row: 4; }
+.item-text-3 { grid-column: 3 / 4; grid-row: 4; }
+.item-footer { grid-column: 1 / -1; grid-row: 5; }
+
+/* Header Styles */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+.item-header p { margin: 0; font-size: 14px; }
+.item-header .country { font-weight: bold; font-size: 18px; text-align: right; }
+
+/* Main Title Styles */
+.item-main h1 {
+    font-size: 120px;
+    font-weight: 700;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    letter-spacing: -2px;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+}
+.credits {
+    font-size: 12px;
+    color: #555;
+    margin: 2px 0;
 }
 
-/* Header and Navigation Styles */
-header {
-    background-color: #4D148C; /* FedEx Purple */
-    padding: 10px 0;
-    color: white;
+/* Text Section Styles */
+.item-coords p {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
 }
 
-header .container {
+.item-text-1, .item-text-2, .item-text-3 {
+    font-size: 14px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+.item-text-1 h3, .item-text-2 h3, .item-text-3 h3 {
+    margin-top: 0;
+}
+
+/* Footer Styles */
+.item-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-header .logo img {
-    height: 40px;
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-header nav ul li {
-    margin-left: 25px;
-}
-
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-header nav ul li a i {
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-.user-nav .fa-user-circle, .user-nav .fa-search {
-    font-size: 24px;
-}
-
-/* Hero Section Styles */
-.hero {
-    position: relative;
-    height: 600px;
-    background-image: url('webImage.jpg'); /* Your image here */
-    background-size: cover;
-    background-position: left center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-/* Purple overlay with diagonal cut */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to bottom right, rgba(77, 20, 140, 0.8), rgba(126, 39, 149, 0.9));
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 40% 100%);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding-right: 15%; /* Push content away from the diagonal edge */
-}
-
-.hero h1 {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
-/* Action Tabs (Rate & Ship, Track, Locations) */
-.action-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.tab {
-    background-color: white;
-    color: #333;
-    padding: 20px 40px;
-    margin: 0 5px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 100px;
-}
-
-.tab i {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.tab span {
-    font-weight: bold;
-}
-
-.tab.active {
-    background-color: #4D148C; /* FedEx Purple */
-    color: white;
-}
-
-/* Tracking Form Styles */
-.tracking-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.tracking-form input {
-    padding: 15px;
-    font-size: 16px;
-    border: none;
-    width: 400px;
-    border-radius: 4px 0 0 4px;
-}
-
-.tracking-form button {
-    padding: 15px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #FF6600; /* FedEx Orange */
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 0 4px 4px 0;
-}
-
-.tracking-links {
-    margin-top: 15px;
-}
-
-.tracking-links a {
-    color: white;
-    text-decoration: none;
+    padding-top: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
     font-size: 14px;
     font-weight: bold;
+}
+
+/* Button Styles */
+.styled-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.styled-button:hover {
+    background-color: #FF6600; /* Use an accent color on hover */
+    transform: translateY(-2px);
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 900px) {
+    .page-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+    .item-text-3 {
+        grid-column: 1 / -1;
+        grid-row: 5;
+    }
+    .item-footer {
+        grid-row: 6;
+    }
+    .item-main h1 {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .item-text-1, .item-text-2, .item-text-3, .item-footer {
+        grid-column: 1 / -1;
+    }
+    .item-text-2 { grid-row: 5; }
+    .item-text-3 { grid-row: 6; }
+    .item-footer { grid-row: 7; flex-direction: column; gap: 15px; }
+    .item-main h1 { font-size: 60px; }
+    .item-header, .item-coords { text-align: left; }
+    .item-header .country { text-align: left; }
 }
