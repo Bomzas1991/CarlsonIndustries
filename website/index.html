@@ -3,51 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everest</title>
+    <title>Youmeme - Geriausias Klubas</title>
+    
+    <!-- Google Fonts: Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Link to your stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Using Google Fonts to get a font similar to Aileron -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="page-wrapper">
-        <header class="grid-item item-header">
-            <div class="info-block">
-                <p><strong>Latitude</strong> 27.988065</p>
-                <p><strong>Longitude</strong> 86.922623</p>
-            </div>
-            <div class="info-block">
-                <p><strong>Font Used:</strong> Aileron (Approximated)</p>
-                <p class="country">Nepal.</p>
+
+    <!-- Background bokeh lights -->
+    <div class="bokeh-light light-1"></div>
+    <div class="bokeh-light light-2"></div>
+    <div class="bokeh-light light-3"></div>
+    <div class="bokeh-light light-4"></div>
+
+    <div class="page-container">
+        <!-- Header Navigation -->
+        <header class="main-header">
+            <div class="logo">YOUMEME</div>
+            <nav class="main-nav">
+                <a href="#">Introduction</a>
+                <a href="#">Platform</a>
+                <a href="#">Community</a>
+                <a href="#">Contests</a>
+                <a href="#">Partners</a>
+                <a href="#">Team</a>
+            </nav>
+            <div class="action-buttons">
+                <a href="#" class="btn btn-outline">Documentation</a>
+                <a href="#" class="btn btn-solid">
+                    Launch App
+                    <span class="beta-tag">Beta</span>
+                </a>
             </div>
         </header>
 
-        <main class="grid-item item-main">
-            <h1>Everest.</h1>
-            <p class="credits">Photo by: itsafrismakarlina at Wordpress.com</p>
-            <p class="credits">Contour Map by: Viewfinder Panorama</p>
+        <!-- Main Hero Section -->
+        <main class="hero-section">
+            <div class="hero-content">
+                <h1>YOUMEME</h1>
+                <p>Geriausias klubas Vilniuje. Prisijunk ir tu!</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-outline-dark">Pitch Deck</a>
+                    <a href="#" class="btn btn-solid-white">Introduction</a>
+                </div>
+            </div>
         </main>
 
-        <section class="grid-item item-coords">
-            <p>27° 59' 9.8340'' N, 86° 55' 21.4428'' E</p>
-        </section>
-
-        <section class="grid-item item-text-1">
-            <p>The highest peak of the planet, Mount Everest in Nepal is one of the true miracles on earth. Local Tibetan people call it Zhomolungma (meaning 'The Divine Mother of Life'), and the elevation of Everest is estimated to total 29,029 ft (8,848 meters).</p>
-        </section>
-
-        <section class="grid-item item-text-2">
-            <p>Actually, the mount is located right on the border between Nepal and China, and since the view to Mount Everest from the Nepalese side is blocked by two other high mounts, those who want to observe the highest peak of the world should approach it from the Chinese side.</p>
-        </section>
-
-        <section class="grid-item item-text-3">
-            <p>Everest is surrounded by many other high peaks located right near it, like Makalu Mount, Changtse Mount, Lhotse Mount, Nuptse Mount, Gyachung kang, Cho Oyu, and a few others, which are all a bit lower than Everest but 4 of them are on the list of the world's highest mountains in the world.</p>
-        </section>
-
-        <footer class="grid-item item-footer">
-            <!-- Button to Newton Page -->
-            <a href="newton.html" class="styled-button">Discover Newton's Laws</a>
-            <p>Content by: LatLong.net</p>
-        </footer>
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 19V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 12L12 19L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
     </div>
+
 </body>
 </html>
+
