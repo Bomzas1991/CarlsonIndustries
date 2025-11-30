@@ -1,60 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoyalBoxing - Geriausias Klubas</title>
-    
-    <!-- Google Fonts: Sora -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Link to your stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <title>Geriausias Klubas Vilniuje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset and Variables */
+        :root {
+            --primary-text: #FFFFFF;
+            --secondary-text: #B0B0B0;
+            --dark-background: #0D0D15; /* A deep, dark background */
+            --accent-color: #555AFF; /* Example accent for buttons/links */
+            --nav-link-hover: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--dark-background);
+            color: var(--primary-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Hide potential scrollbar from background effects */
+        }
+
+        /* --- Header/Navigation Bar --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            width: 100%;
+            position: fixed; /* Keep header on top */
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary-text);
+            /* Replace with your actual logo text */
+        }
+
+        .nav-links a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--nav-link-hover);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .doc-button {
+            background-color: transparent;
+            color: var(--primary-text);
+            border: 1px solid var(--primary-text);
+        }
+
+        .launch-button {
+            background-color: var(--accent-color);
+            color: var(--primary-text);
+            border: none;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Aligns content to the left/center of the visual */
+            padding-left: 10%; /* Adjust as needed for alignment */
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-text-container {
+            max-width: 500px;
+            padding-bottom: 50px; /* Space from the bottom of the viewport/dog graphic */
+        }
+
+        .main-heading {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .description {
+            font-size: 20px;
+            color: var(--secondary-text);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-button {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+            font-size: 16px;
+        }
+
+        .pitch-deck-button {
+            background-color: var(--primary-text);
+            color: var(--dark-background);
+        }
+
+        .introduction-button {
+            background-color: transparent;
+            color: var(--primary-text);
+            border: 1px solid var(--primary-text);
+        }
+
+        /* --- Placeholder for large visual element (Dog/3D Model) --- */
+        .visual-placeholder {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%; /* Occupy the right side */
+            height: 90%;
+            /* This is where your large visual would go. For now, it's just a placeholder */
+        }
+
+        /* --- Placeholder for abstract background (bubbles/stars) --- */
+        /* Note: Creating the complex animated background requires more advanced CSS/JS, 
+           but this adds a slight visual effect. */
+        .background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through */
+            opacity: 0.5;
+            background: radial-gradient(circle at 10% 20%, rgba(85, 90, 255, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 90%, rgba(255, 0, 150, 0.1) 0%, transparent 40%);
+        }
+
+    </style>
 </head>
 <body>
 
-    <!-- Background bokeh lights -->
-    <div class="bokeh-light light-1"></div>
-    <div class="bokeh-light light-2"></div>
-    <div class="bokeh-light light-3"></div>
-    <div class="bokeh-light light-4"></div>
+    <div class="background-effect"></div>
 
-    <div class="page-container">
-        <!-- Header Navigation -->
-        <header class="main-header">
-            <div class="logo">Royal</div>
-            <nav class="main-nav">
-                <a href="#">Introduction</a>
-                <a href="#">Platform</a>
-                <a href="#">Community</a>
-                <a href="#">Contests</a>
-                <a href="#">Partners</a>
-                <a href="#">Team</a>
-            </nav>  
-        </header>
-
-        <!-- Main Hero Section -->
-        <main class="hero-section">
-            <div class="hero-content">
-                <h1>Royal Boxing</h1>
-                <p>Geriausias bokso klubas Vilniuje. Prisijunk ir tu!</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-outline-dark">Pitch Deck</a>
-                    <a href="#" class="btn btn-solid-white">Introduction</a>
-                </div>
-            </div>
-        </main>
-
-        <!-- Scroll Down Indicator -->
-        <div class="scroll-indicator">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 19V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19 12L12 19L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <header class="header">
+        <a href="#" class="logo">YOU MEME</a> <nav class="nav-links">
+            <a href="#">Introduction</a>
+            <a href="#">Reviews</a>
+            <a href="#">Community</a>
+            <a href="#">Platform</a>
+            <a href="#">Contents</a>
+            <a href="#">Team</a>
+            <a href="#">Roadmap</a>
+        </nav>
+        
+        <div class="action-buttons">
+            <a href="#" class="nav-button doc-button">Documentation</a>
+            <a href="#" class="nav-button launch-button">Launch App</a>
         </div>
-    </div>
+    </header>
+
+    <main class="main-content">
+        <div class="hero-text-container">
+            <h1 class="main-heading">YOUMEME</h1>
+            
+            <p class="description">
+                **Geriausias klubas Vilniuje. Prisijunk ir tu!**
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="#" class="hero-button pitch-deck-button">Pitch Deck</a>
+                <a href="#" class="hero-button introduction-button">Introduction</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="visual-placeholder">
+        </div>
 
 </body>
 </html>
