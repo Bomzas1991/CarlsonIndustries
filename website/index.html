@@ -9,12 +9,12 @@
         /* Basic Reset and Variables */
         :root {
             --primary-text: #FFFFFF;
-            --secondary-text: #CCCCCC; /* Lighter secondary text for better contrast */
+            --secondary-text: #CCCCCC; 
             --dark-background: #0D0D15; 
-            --schedule-background: #1a1a2e;
-            --footer-background: #181818; /* Dark gray for footer */
+            --schedule-background: #2E1A1A; /* Deep, dark reddish background */
+            --footer-background: #181818; 
             --accent-color: #D62828; /* VIBRANT RED */
-            --accent-hover: #E84F4F; /* Lighter red for hover */
+            --accent-hover: #E84F4F; 
         }
 
         * {
@@ -78,7 +78,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent-color); /* Highlight navigation links with accent color */
+            color: var(--accent-color); 
         }
 
         .action-buttons {
@@ -130,31 +130,27 @@
         }
 
         .hero-text-container {
-            max-width: 500px;
+            max-width: 600px; /* Wider container for larger text */
             padding-bottom: 50px;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
         }
-        
-        .hero-button.pitch-deck-button {
-            background-color: var(--accent-color); /* Red primary button */
-            color: var(--primary-text);
-        }
-        
-        .hero-button.pitch-deck-button:hover {
-            background-color: var(--accent-hover);
+
+        /* INCREASED SIZE */
+        .main-heading {
+            font-size: 88px; /* Bigger heading */
+            font-weight: 800;
+            margin-bottom: 25px; /* More space below */
+            line-height: 1;
         }
 
-        .hero-button.introduction-button {
-            background-color: transparent;
-            color: var(--primary-text);
-            border: 1px solid var(--primary-text);
+        /* INCREASED SIZE */
+        .description {
+            font-size: 24px; /* Bigger description */
+            color: var(--secondary-text);
+            margin-bottom: 40px;
+            font-weight: 300;
         }
         
-        .hero-button.introduction-button:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
         /* --- Scroll Arrow --- */
         .scroll-arrow {
             position: absolute;
@@ -167,13 +163,13 @@
             z-index: 6; 
             animation: bounce 1.5s infinite; 
             transition: opacity 0.3s ease;
-            color: var(--primary-text); /* Arrow color remains white */
+            color: var(--primary-text); 
             text-decoration: none; 
         }
 
-        /* --- Schedule Section Styling (Unchanged content-wise) --- */
+        /* --- Schedule Section Styling --- */
         .schedule-section {
-            background-color: var(--schedule-background); 
+            background-color: var(--schedule-background); /* NOW REDDISH */
             padding: 80px 40px;
             min-height: 100vh; 
             display: flex;
@@ -185,17 +181,56 @@
             z-index: 5; 
         }
 
-        .schedule-table th {
-            color: var(--accent-color); /* Table headers use red accent */
+        .schedule-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--primary-text);
+            letter-spacing: 1px;
         }
         
+        .schedule-table {
+            width: 90%;
+            max-width: 1200px; 
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 20px;
+            table-layout: fixed; 
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 18px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            font-weight: 400;
+            word-wrap: break-word;
+            font-size: 15px; 
+        }
+        
+        .schedule-table th {
+            color: var(--accent-color); 
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .schedule-table td {
+            color: var(--primary-text);
+        }
+        
+        .time-col {
+            font-weight: 600;
+            color: var(--secondary-text);
+            width: 120px; 
+            padding-left: 25px;
+        }
+
         /* --- Footer Styling --- */
         .footer {
-            background-color: var(--footer-background); /* Dark gray background */
-            color: var(--secondary-text); /* Light gray text */
+            background-color: var(--footer-background); 
+            color: var(--secondary-text); 
             padding: 40px 20px;
             text-align: center;
-            z-index: 5; /* Ensure footer is above the fixed background */
+            z-index: 5; 
             width: 100%;
         }
 
@@ -262,11 +297,7 @@
                 Geriausias klubas Vilniuje. Prisijunk ir tu!
             </p>
             
-            <div class="hero-buttons">
-                <a href="#" class="hero-button pitch-deck-button">Pitch Deck</a>
-                <a href="#" class="hero-button introduction-button">Introduction</a>
             </div>
-        </div>
         
         <a href="#schedule" class="scroll-arrow scroll-trigger" aria-label="Scroll to schedule">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
