@@ -1,240 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carlson Industries</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg-layer: 0%; /* used by JS */
-      --bg-css: linear-gradient(180deg, #071130 0%, #0f172a 100%);
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, orange 50%, white 50%);
+      font-family: Arial, sans-serif;
     }
 
-    /* reset / base */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:var(--bg-css);transition:background 400ms linear;font-family:Inter,system-ui,Arial, sans-serif;color:#eef2f7}
-
-    /* header / hero */
-    .hero {
-      min-height: 60vh;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding-top:48px;
-      text-align:center;
-      position:sticky;
-      top:0;
-      z-index:10;
-      pointer-events:none; /* so scroll still works when clicking/dragging */
-    }
-    .hero-inner {
-      pointer-events:auto;
-      width:100%;
-      max-width:1200px;
-      padding-inline:24px;
+    h1 {
+      font-size: 64px;
+      text-transform: uppercase;
+      color: #ff6a00;
+      margin-bottom: 50px;
+      text-align: center;
     }
 
-    h1.brand {
-      margin: 0 auto;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(48px, 8vw, 120px);
-      line-height: 0.92;
-      letter-spacing: 0.01em;
-      font-weight: 600;
-      display:inline-block;
-      background: linear-gradient(90deg, #FFB824 0%, #FF6A00 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-align:center;
-      transform-origin:center;
-      padding: 6px 10px;
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      text-transform: uppercase;
+      background-color: #ff6a00;
+      color: white;
+      border: none;
       border-radius: 6px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    /* small nav under hero (optional, decorative) */
-    .nav {
-      margin-top: 12px;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      color: rgba(255,255,255,0.85);
-      font-size:14px;
-    }
-
-    /* content to allow scrolling */
-    main.content {
-      min-height:150vh;
-      padding:48px 20px;
-      display:block;
-      max-width:1100px;
-      margin:0 auto;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.03);
-      padding:28px;
-      border-radius:12px;
-      margin-bottom:20px;
-      backdrop-filter: blur(4px);
-    }
-
-    /* background effects layer (parallax-ish blur & darken) */
-    .bg-overlay {
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-      transition:opacity 200ms linear;
-      mix-blend-mode: normal;
-    }
-
-    /* accessibility tweaks for very small screens */
-    @media (max-width:520px){
-      h1.brand{font-size: clamp(36px, 12vw, 64px)}
-      .hero{padding-top:28px}
+    button:hover {
+      background-color: darkorange;
     }
   </style>
 </head>
 <body>
-  <div class="hero" id="hero">
-    <div class="hero-inner">
-      <h1 class="brand" id="brand">Carlson Industries</h1>
-      <div class="nav" id="nav"></div>
-    </div>
-  </div>
-
-  <main class="content" id="content" aria-live="polite">
-    <!-- filler blocks so user can scroll; content will be replaced from JSON later -->
-    <div class="card"><h2>Premium Engineering</h2><p>Precision solutions for complex problems.</p></div>
-    <div class="card"><h2>Manufacturing Excellence</h2><p>High-quality manufacturing with sustainable processes.</p></div>
-    <div class="card"><h2>Innovation & R&D</h2><p>Continuous investment in research and design.</p></div>
-    <div class="card"><h2>Careers</h2><p>We hire creative problem solvers.</p></div>
-    <div class="card"><h2>Contact</h2><p>Get in touch to schedule a consultation.</p></div>
-  </main>
-
-  <div class="bg-overlay" id="bgOverlay" aria-hidden="true"></div>
-
-  <script>
-    // helper: convert hex to rgb array
-    function hexToRgb(hex) {
-      hex = hex.replace('#','');
-      if(hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
-      const num = parseInt(hex,16);
-      return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
-    }
-
-    // helper: interpolate between two RGB arrays by t in [0,1]
-    function lerpRgb(a, b, t){
-      return [
-        Math.round(a[0] + (b[0]-a[0])*t),
-        Math.round(a[1] + (b[1]-a[1])*t),
-        Math.round(a[2] + (b[2]-a[2])*t)
-      ];
-    }
-
-    // build CSS linear-gradient string from two hex colors
-    function gradientCss(c1, c2, angle='180deg'){
-      return `linear-gradient(${angle}, ${c1} 0%, ${c2} 100%)`;
-    }
-
-    // read JSON and apply branding
-    async function loadAndApply() {
-      try {
-        const res = await fetch('data.json');
-        const cfg = await res.json();
-        const site = cfg.website || {};
-
-        // hero name & nav
-        const brandEl = document.getElementById('brand');
-        brandEl.textContent = (site.branding && site.branding.hero && site.branding.hero.text) || site.name || 'Carlson Industries';
-
-        const navEl = document.getElementById('nav');
-        navEl.innerHTML = '';
-        (site.layout && site.layout.nav || []).forEach(item=>{
-          const span = document.createElement('span');
-          span.textContent = item;
-          navEl.appendChild(span);
-        });
-
-        // apply font and letter-spacing if provided
-        const hero = site.branding && site.branding.hero;
-        if(hero){
-          if(hero.fontFamily) brandEl.style.fontFamily = hero.fontFamily;
-          if(hero.letterSpacing) brandEl.style.letterSpacing = hero.letterSpacing;
-        }
-
-        // background sequence for interpolation
-        const seq = (site.branding && site.branding.backgroundSequence) || [
-          {stop:0, gradient:['#071130','#0f172a']},
-          {stop:1, gradient:['#042027','#00131a']}
-        ];
-
-        // parse gradients into pairs of RGB arrays
-        const parsed = seq.map(s => ({
-          stop: s.stop,
-          a: hexToRgb(s.gradient[0]),
-          b: hexToRgb(s.gradient[1])
-        }));
-
-        // apply scroll-driven interpolation using requestAnimationFrame
-        const maxBlur = site.branding && site.branding.scrollEffect && site.branding.scrollEffect.maxBlurPx || 8;
-        const maxDarken = site.branding && site.branding.scrollEffect && site.branding.scrollEffect.maxDarken || 0.22;
-        const body = document.documentElement;
-        const overlay = document.getElementById('bgOverlay');
-
-        let ticking = false;
-        function onScroll(){
-          if(!ticking){
-            window.requestAnimationFrame(()=> {
-              const scrollY = window.scrollY || window.pageYOffset;
-              const docH = document.documentElement.scrollHeight - window.innerHeight;
-              const t = docH > 0 ? Math.min(1, scrollY / docH) : 0;
-
-              // find surrounding stops
-              let i=0;
-              while(i < parsed.length-1 && t > parsed[i+1].stop) i++;
-              const start = parsed[i];
-              const end = parsed[Math.min(i+1, parsed.length-1)];
-              const localT = (t - start.stop) / Math.max(0.0001, (end.stop - start.stop));
-
-              // interpolate both gradient colors
-              const topRgb = lerpRgb(start.a, end.a, localT);
-              const botRgb = lerpRgb(start.b, end.b, localT);
-
-              const topHex = `rgb(${topRgb.join(',')})`;
-              const botHex = `rgb(${botRgb.join(',')})`;
-
-              // set root css gradient
-              const angle = 180;
-              document.documentElement.style.setProperty('--bg-css', `linear-gradient(${angle}deg, ${topHex} 0%, ${botHex} 100%)`);
-
-              // subtle blur and darken overlay based on t
-              const blurPx = (maxBlur * t).toFixed(2);
-              overlay.style.backdropFilter = `blur(${blurPx}px)`;
-              overlay.style.background = `linear-gradient(180deg, rgba(0,0,0,${t*maxDarken}) 0%, rgba(0,0,0,${t*maxDarken}) 100%)`;
-              overlay.style.opacity = `${0.9 * t}`;
-
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }
-
-        // initial apply
-        window.addEventListener('scroll', onScroll, {passive:true});
-        onScroll();
-
-      } catch (err) {
-        console.error('Failed to load data.json', err);
-      }
-    }
-
-    loadAndApply();
-  </script>
+  <h1>Carlson Industries</h1>
+  <button onclick="location.href='newton.html'">Go to Newton's Laws</button>
 </body>
 </html>
 
