@@ -1,61 +1,112 @@
-/* From Uiverse.io by Spacious74 */ 
-.button {
+/* style.css */
+
+/* Basic layout for demo */
+.interactive-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* adjust center / left as you need */
+  padding: 60px 10%;
+  min-height: 40vh;
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(13,13,21,0.9) 100%);
+}
+
+/* The interactive text */
+.interactive-text {
+  --mx: 50%;
+  --my: 50%;
+  --glow-1: 0 0 30px rgba(65,105,225,0.6);
+  --glow-2: 0 0 80px rgba(220,20,60,0.25);
+  --accent-color: #d62828;
+
+  font-family: 'Sora', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 800;
+  font-size: clamp(36px, 8vw, 96px);
+  letter-spacing: .12em;
+  color: white;
+  position: relative;
+  margin: 0;
   cursor: pointer;
-  font-size: 1.4rem;
-  border-radius: 16px;
-  border: none;
-  padding: 2px;
-  background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
-  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 280ms cubic-bezier(.2,.9,.2,1), text-shadow 280ms ease, filter 280ms ease;
+  transform-origin: center;
+  z-index: 6;
+
+  /* neon fill using background-clip technique */
+  background-image:
+    radial-gradient(circle at var(--mx) var(--my), rgba(65,105,225,0.18) 0%, transparent 18%),
+    linear-gradient(90deg, rgba(255,255,255,0.95), rgba(240,240,240,0.9) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.10),
+    var(--glow-1),
+    var(--glow-2);
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.7));
+  padding: 0.1em 0.15em;
 }
-.button::after {
-  content: "";
+
+/* Hover/focus state — stronger glow & gentle scale */
+.interactive-text:hover,
+.interactive-text:focus {
+  transform: translateY(-6px) scale(1.02);
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.14),
+    0 0 40px rgba(65,105,225,0.55),
+    0 0 110px rgba(220,20,60,0.30);
+  outline: none;
+}
+
+/* Active press feedback */
+.interactive-text:active {
+  transform: translateY(-2px) scale(0.995);
+}
+
+/* Smaller sub-glow overlay to respond to spotlight position */
+.interactive-text::after {
+  content: '';
   position: absolute;
-  width: 65%;
-  height: 60%;
-  border-radius: 120px;
-  top: 0;
-  right: 0;
-  box-shadow: 0 0 20px #ffffff38;
+  inset: 0;
   z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side at var(--mx) var(--my), rgba(65,105,225,0.08), transparent 25%),
+    radial-gradient(closest-side at calc(var(--mx) + 10%) calc(var(--my) - 20%), rgba(220,20,60,0.06), transparent 18%);
+  mix-blend-mode: screen;
+  transition: opacity 200ms ease;
 }
 
-.blob1 {
+/* Particle (spark) style */
+.particle {
   position: absolute;
-  width: 70px;
-  height: 100%;
-  border-radius: 16px;
-  bottom: 0;
-  left: 0;
-  background: radial-gradient(
-    circle 60px at 0% 100%,
-    #3fe9ff,
-    #0000ff80,
-    transparent
-  );
-  box-shadow: -10px 10px 30px #0051ff2d;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  will-change: transform, opacity;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.08) 70%);
+  box-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 18px rgba(255,215,50,0.3);
 }
 
-.inner {
-  padding: 14px 25px;
-  border-radius: 14px;
-  color: #fff;
-  z-index: 3;
-  position: relative;
-  background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+/* small variations */
+.particle.small { width: 4px; height: 4px; }
+.particle.large { width: 9px; height: 9px; }
+
+/* Accessibility focus ring (visible only for keyboard) */
+.interactive-text:focus-visible {
+  box-shadow: 0 0 0 6px rgba(214,40,40,0.12);
+  border-radius: 6px;
 }
-.inner::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 14px;
-  background: radial-gradient(
-    circle 60px at 0% 100%,
-    #00e1ff1a,
-    #0000ff11,
-    transparent
-  );
-  position: absolute;
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .interactive-wrapper { padding: 40px 6%; min-height: 30vh; }
+  .interactive-text { letter-spacing: .08em; }
 }
