@@ -1,112 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carlson Industries</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, orange 50%, white 50%);
-    position: relative;
-  }
-
-  /* Premium shadow overlay using pseudo-element */
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%, rgba(255,255,255,0.05) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 2; /* above shadow */
-    padding-top: 80px;
-  }
-
-  h1 {
-    font-size: clamp(64px, 12vw, 120px);
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #FFB824, #FF6A00);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    text-align: center;
-    margin: 0;
-  }
-
-  button {
-    margin-top: 40px;
-    padding: 15px 30px;
-    font-size: 18px;
-    text-transform: uppercase;
-    background-color: #ff6a00;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-
-  button:hover {
-    background-color: darkorange;
-    transform: scale(1.05);
-  }
-
-  footer {
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    background: rgba(255,255,255,0.25);
-    color: #000;
-    backdrop-filter: blur(5px);
-    margin-top: auto;
-  }
-
-  footer a {
-    color: #ff6a00;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship, Manage, Track, Deliver</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-  <main>
-    <h1>Carlson Industries</h1>
-    <button onclick="location.href='newton.html'">Go to Newton's Laws</button>
-  </main>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.fedex.com/content/dam/fedex-com/logos/logo.png" alt="FedEx Logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Shipping <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Tracking <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Design & Print <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Locations <i class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#">Support <i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+            </nav>
+            <nav class="user-nav">
+                <ul>
+                    <li><a href="#">Sign Up or Log In</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
+                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <footer>
-    Contacts: TikTok - <a href="https://www.tiktok.com/@kristinho_editz" target="_blank">@kristinho_editz</a>
-  </footer>
+    <!-- Main Hero Section -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Ship, manage, track, deliver</h1>
+
+            <div class="action-tabs">
+                <div class="tab">
+                    <i class="fas fa-calculator"></i>
+                    <span>RATE & SHIP</span>
+                </div>
+                <div class="tab active">
+                    <i class="fas fa-box-open"></i>
+                    <span>TRACK</span>
+                </div>
+                <div class="tab">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>LOCATIONS</span>
+                </div>
+            </div>
+
+            <div class="tracking-form">
+                <input type="text" placeholder="TRACKING ID">
+                <button type="submit">TRACK</button>
+            </div>
+            <div class="tracking-links">
+                <a href="#">MULTIPLE TRACKING NUMBERS</a> | <a href="#">NEED HELP?</a>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
