@@ -3,67 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ship, Manage, Track, Deliver</title>
+    <title>Everest</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Link to Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Using Google Fonts to get a font similar to Aileron -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="https://www.fedex.com/content/dam/fedex-com/logos/logo.png" alt="FedEx Logo">
+    <div class="page-wrapper">
+        <header class="grid-item item-header">
+            <div class="info-block">
+                <p><strong>Latitude</strong> 27.988065</p>
+                <p><strong>Longitude</strong> 86.922623</p>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">Shipping <i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">Tracking <i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">Design & Print <i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">Locations <i class="fas fa-chevron-down"></i></a></li>
-                    <li><a href="#">Support <i class="fas fa-chevron-down"></i></a></li>
-                </ul>
-            </nav>
-            <nav class="user-nav">
-                <ul>
-                    <li><a href="#">Sign Up or Log In</a></li>
-                    <li><a href="#"><i class="fas fa-user-circle"></i></a></li>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Hero Section -->
-    <main class="hero">
-        <div class="hero-content">
-            <h1>Ship, manage, track, deliver</h1>
-
-            <div class="action-tabs">
-                <div class="tab">
-                    <i class="fas fa-calculator"></i>
-                    <span>RATE & SHIP</span>
-                </div>
-                <div class="tab active">
-                    <i class="fas fa-box-open"></i>
-                    <span>TRACK</span>
-                </div>
-                <div class="tab">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>LOCATIONS</span>
-                </div>
+            <div class="info-block">
+                <p><strong>Font Used:</strong> Aileron (Approximated)</p>
+                <p class="country">Nepal.</p>
             </div>
+        </header>
 
-            <div class="tracking-form">
-                <input type="text" placeholder="TRACKING ID">
-                <button type="submit">TRACK</button>
-            </div>
-            <div class="tracking-links">
-                <a href="#">MULTIPLE TRACKING NUMBERS</a> | <a href="#">NEED HELP?</a>
-            </div>
-        </div>
-    </main>
+        <main class="grid-item item-main">
+            <h1>Everest.</h1>
+            <p class="credits">Photo by: itsafrismakarlina at Wordpress.com</p>
+            <p class="credits">Contour Map by: Viewfinder Panorama</p>
+        </main>
 
+        <section class="grid-item item-coords">
+            <p>27° 59' 9.8340'' N, 86° 55' 21.4428'' E</p>
+        </section>
+
+        <section class="grid-item item-text-1">
+            <p>The highest peak of the planet, Mount Everest in Nepal is one of the true miracles on earth. Local Tibetan people call it Zhomolungma (meaning 'The Divine Mother of Life'), and the elevation of Everest is estimated to total 29,029 ft (8,848 meters).</p>
+        </section>
+
+        <section class="grid-item item-text-2">
+            <p>Actually, the mount is located right on the border between Nepal and China, and since the view to Mount Everest from the Nepalese side is blocked by two other high mounts, those who want to observe the highest peak of the world should approach it from the Chinese side.</p>
+        </section>
+
+        <section class="grid-item item-text-3">
+            <p>Everest is surrounded by many other high peaks located right near it, like Makalu Mount, Changtse Mount, Lhotse Mount, Nuptse Mount, Gyachung kang, Cho Oyu, and a few others, which are all a bit lower than Everest but 4 of them are on the list of the world's highest mountains in the world.</p>
+        </section>
+
+        <footer class="grid-item item-footer">
+            <!-- Button to Newton Page -->
+            <a href="newton.html" class="styled-button">Discover Newton's Laws</a>
+            <p>Content by: LatLong.net</p>
+        </footer>
+    </div>
 </body>
 </html>
