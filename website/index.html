@@ -10,8 +10,9 @@
         :root {
             --primary-text: #FFFFFF;
             --secondary-text: #B0B0B0;
-            --dark-background: #0D0D15; /* A deep, dark background */
-            --accent-color: #555AFF; /* Example accent for buttons/links */
+            --dark-background: #0D0D15; 
+            --schedule-background: #1a1a2e; /* Slightly lighter dark color for section separation */
+            --accent-color: #555AFF; 
             --nav-link-hover: #FFFFFF;
         }
 
@@ -28,18 +29,19 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-            position: relative; /* Needed for absolute positioning of arrow */
+            overflow-x: hidden; 
+            position: relative;
+            scroll-behavior: smooth; /* Ensure native smooth scrolling for anchors */
         }
 
-        /* --- Header/Navigation Bar --- */
+        /* --- Header/Navigation Bar (Unchanged) --- */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
             width: 100%;
-            position: fixed; /* Keep header on top */
+            position: fixed; 
             z-index: 10;
         }
 
@@ -96,8 +98,8 @@
             padding-left: 10%;
             position: relative;
             z-index: 5;
-            min-height: 100vh; /* Ensure it takes full viewport height */
-            padding-top: 80px; /* Offset for fixed header */
+            min-height: 100vh; 
+            padding-top: 80px; 
         }
 
         .hero-text-container {
@@ -144,41 +146,20 @@
             border: 1px solid var(--primary-text);
         }
 
-        /* --- Visual Placeholder & Background Effects --- */
-        .visual-placeholder {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 60%;
-            height: 90%;
-            /* For now, just a placeholder */
-        }
-
-        .background-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.5;
-            background: radial-gradient(circle at 10% 20%, rgba(85, 90, 255, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 90%, rgba(255, 0, 150, 0.1) 0%, transparent 40%);
-        }
-
         /* --- Scroll Arrow --- */
         .scroll-arrow {
             position: absolute;
-            bottom: 30px; /* Distance from bottom of viewport */
+            bottom: 30px; 
             left: 50%;
-            transform: translateX(-50%); /* Center horizontally */
+            transform: translateX(-50%); 
             width: 40px;
             height: 40px;
             cursor: pointer;
             z-index: 10;
-            animation: bounce 1.5s infinite; /* Gentle bouncing animation */
+            animation: bounce 1.5s infinite; 
             transition: opacity 0.3s ease;
-            color: var(--primary-text); /* Color of the arrow */
+            color: var(--primary-text); 
+            text-decoration: none; /* Crucial for the anchor tag */
         }
 
         .scroll-arrow:hover {
@@ -197,11 +178,11 @@
             }
         }
 
-        /* --- Schedule Section Placeholder --- */
+        /* --- Schedule Section Styling --- */
         .schedule-section {
-            background-color: #1a1a2e; /* A slightly different dark background for distinction */
+            background-color: var(--schedule-background); 
             padding: 80px 40px;
-            min-height: 100vh; /* Ensure it's tall enough to scroll to */
+            min-height: 100vh; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -211,16 +192,53 @@
 
         .schedule-section h2 {
             font-size: 48px;
-            margin-bottom: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
             color: var(--primary-text);
+            letter-spacing: 1px;
+        }
+        
+        /* --- Minimalistic Table Styling --- */
+        .schedule-table {
+            width: 80%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 20px;
         }
 
-        .schedule-section p {
-            font-size: 18px;
-            color: var(--secondary-text);
-            max-width: 800px;
-            line-height: 1.6;
+        .schedule-table th, .schedule-table td {
+            padding: 18px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+            font-weight: 400;
         }
+        
+        .schedule-table th {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .schedule-table td {
+            color: var(--primary-text);
+            font-size: 16px;
+        }
+        
+        .schedule-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05); /* Very slight hover effect */
+        }
+        
+        .time-col {
+            font-weight: 600;
+            color: var(--secondary-text);
+        }
+        
+        /* Last row/cell cleanup */
+        .schedule-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
     </style>
 </head>
 <body>
@@ -228,7 +246,8 @@
     <div class="background-effect"></div>
 
     <header class="header">
-        <a href="#" class="logo">YOUMEME</a> <nav class="nav-links">
+        <a href="#" class="logo">YOUMEME</a> 
+        <nav class="nav-links">
             <a href="#">Introduction</a>
             <a href="#">Reviews</a>
             <a href="#">Community</a>
@@ -259,8 +278,7 @@
         </div>
     </main>
 
-    <div class="visual-placeholder">
-        </div>
+    <div class="visual-placeholder"></div>
 
     <a href="#schedule" class="scroll-arrow" aria-label="Scroll to schedule">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
@@ -271,32 +289,46 @@
 
     <section id="schedule" class="schedule-section">
         <h2>Mūsų Tvarkaraštis</h2>
-        <p>Čia rasite visą informaciją apie mūsų treniruočių ir užsiėmimų tvarkaraštį.</p>
-        <p> (A future table or image will go here) </p>
+        
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Laikas</th>
+                    <th>Pirmadienis</th>
+                    <th>Antradienis</th>
+                    <th>Trečiadienis</th>
+                    <th>Ketvirtadienis</th>
+                    <th>Penktadienis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">17:00 - 18:30</td>
+                    <td>Bokso pamoka</td>
+                    <td>Kardio</td>
+                    <td>Bokso pamoka</td>
+                    <td>Jėgos treniruotė</td>
+                    <td>Laisvas laikas</td>
+                </tr>
+                <tr>
+                    <td class="time-col">19:00 - 20:30</td>
+                    <td>Klubo Susirinkimas</td>
+                    <td>Mišrios Rytų Kovos</td>
+                    <td>Klubo Susirinkimas</td>
+                    <td>Joga</td>
+                    <td>Šokių naktis</td>
+                </tr>
+                <tr>
+                    <td class="time-col">20:30 - 22:00</td>
+                    <td>Laisvas laikas</td>
+                    <td>Krepšinis</td>
+                    <td>Laisvas laikas</td>
+                    <td>Bokso Pamoka</td>
+                    <td>Uždarymas</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollArrow = document.querySelector('.scroll-arrow');
-
-            if (scrollArrow) {
-                scrollArrow.addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevent default jump behavior
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth' // Smooth scroll effect
-                        });
-                    }
-                });
-            }
-        });
-    </script>
-
-</body>
+    </body>
 </html>
-
-
-
