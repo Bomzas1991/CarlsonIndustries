@@ -1,58 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newton's Laws</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Using Google Fonts to get a font similar to Aileron -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Royal Boxing – Treneriai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Sora', sans-serif;
+            background-color: #0D0D15;
+            color: #FFFFFF;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+
+        .trainers-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trainer-card {
+            position: relative;
+            width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .trainer-card:hover {
+            transform: scale(1.05);
+        }
+
+        .trainer-rectangle {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 0;
+        }
+
+        .trainer-card:hover .trainer-rectangle {
+            transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        .trainer-image {
+            position: relative;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .trainer-name {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 12px;
+            z-index: 2;
+        }
+
+        .miroslav-name {
+            background-color: rgba(220, 20, 60, 0.8);
+            color: #FFFFFF;
+        }
+
+        .jaroslav-name {
+            background-color: rgba(65, 105, 225, 0.8);
+            color: #FFFFFF;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .trainers-container {
+                flex-direction: column;
+                gap: 40px;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div class="page-wrapper">
-        <header class="grid-item item-header">
-            <div class="info-block">
-                <p><strong>Topic</strong> Physics</p>
-                <p><strong>Scientist</strong> Isaac Newton</p>
-            </div>
-            <div class="info-block">
-                <p><strong>Published:</strong> 1687</p>
-                <p class="country">England.</p>
-            </div>
-        </header>
 
-        <main class="grid-item item-main">
-            <h1>Newton's Laws.</h1>
-            <p class="credits">Three Laws of Motion</p>
-        </main>
+    <h1>Treneriai</h1>
 
-        <section class="grid-item item-coords">
-            <p>Philosophiæ Naturalis Principia Mathematica</p>
-        </section>
+    <div class="trainers-container">
+        <!-- Miroslav Card -->
+        <div class="trainer-card">
+            <div class="trainer-rectangle"></div>
+            <img src="miroslav.png" alt="Miroslav" class="trainer-image">
+            <div class="trainer-name miroslav-name">Miroslav</div>
+        </div>
 
-        <section class="grid-item item-text-1">
-            <h3>First Law: Inertia</h3>
-            <p>An object at rest stays at rest and an object in motion stays in motion with the same speed and in the same direction unless acted upon by an unbalanced external force.</p>
-        </section>
-
-        <section class="grid-item item-text-2">
-            <h3>Second Law: F = ma</h3>
-            <p>The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass. The direction of the acceleration is in the direction of the net force.</p>
-        </section>
-
-        <section class="grid-item item-text-3">
-            <h3>Third Law: Action-Reaction</h3>
-            <p>For every action, there is an equal and opposite reaction. This means that in every interaction, there is a pair of forces acting on the two interacting objects. The size of the forces is equal, and their directions are opposite.</p>
-        </section>
-
-        <footer class="grid-item item-footer">
-            <!-- Button to go back to the Everest Page -->
-            <a href="index.html" class="styled-button">Back to Everest</a>
-            <p>Classical Mechanics</p>
-        </footer>
+        <!-- Jaroslav Card -->
+        <div class="trainer-card">
+            <div class="trainer-rectangle"></div>
+            <img src="jaroslav.png" alt="Jaroslav" class="trainer-image">
+            <div class="trainer-name jaroslav-name">Jaroslav</div>
+        </div>
     </div>
+
 </body>
 </html>
+
+
 
 
 
