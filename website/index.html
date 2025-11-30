@@ -12,7 +12,7 @@
             --secondary-text: #CCCCCC; 
             --header-text-dark: #666666; 
             --dark-background: #0D0D15; 
-            --schedule-background: #2A1A2E; /* UPDATED: Dark Purplish background */
+            --schedule-background: #2A1A2E;
             --footer-background: #181818; 
             --accent-color: #D62828; 
             --accent-hover: #E84F4F; 
@@ -20,8 +20,7 @@
             /* Retrofuturism Colors */
             --retro-blue: rgba(65, 105, 225, 0.4); 
             --retro-red: rgba(220, 20, 60, 0.3); 
-            --retro-purple: rgba(138, 43, 226, 0.2); 
-            --retro-dark-overlay: rgba(0, 0, 0, 0.7); 
+            --retro-purple: rgba(138, 43, 226, 0.25); 
         }
 
         * {
@@ -41,7 +40,7 @@
             position: relative;
         }
 
-        /* --- Retrofuturism Background Animation --- */
+        /* --- Retrofuturism Background Animation (Simplified: Only 2–3 lights) --- */
         .retrofuturism-background {
             position: fixed;
             top: 0;
@@ -51,60 +50,42 @@
             z-index: 1; 
             pointer-events: none; 
             overflow: hidden; 
-            background-color: var(--dark-background); 
+            background-color: var(--dark-background);
         }
 
         .retrofuturism-background::before,
         .retrofuturism-background::after {
             content: '';
             position: absolute;
-            width: 130%;      /* smaller than 200% */
-            height: 130%;     /* smaller than 200% */
-            top: -15%;        /* reduced offset */
-            left: -15%;
-            filter: blur(45px); /* decreased from 80px → tighter glow */
-            opacity: 0.5;
-            animation: retrofuturism-move 30s infinite alternate ease-in-out;
-            background: 
-                radial-gradient(circle at 20% 30%, var(--retro-blue) 0%, transparent 60%),
-                radial-gradient(circle at 70% 80%, var(--retro-red) 0%, transparent 60%),
-                radial-gradient(circle at 40% 90%, var(--retro-purple) 0%, transparent 60%);
-            background-size: 22% 22%, 18% 18%, 25% 25%; /* smaller light sources */
-        }
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            filter: blur(55px);
+            opacity: 0.45;
+            animation: retrofuturism-move 32s infinite alternate ease-in-out;
         }
 
-        .retrofuturism-background::after {
-            animation-delay: 15s;
-            filter: blur(35px);    /* smaller blur */
-            opacity: 0.45;         /* slightly reduced */
+        /* Only 2 lights here */
+        .retrofuturism-background::before {
             background:
-                radial-gradient(circle at 80% 20%, var(--retro-red) 0%, transparent 60%),
-                radial-gradient(circle at 30% 60%, var(--retro-purple) 0%, transparent 60%),
-                radial-gradient(circle at 90% 10%, var(--retro-blue) 0%, transparent 60%);
-            background-size: 24% 24%, 20% 20%, 22% 22%;
+                radial-gradient(circle at 25% 40%, var(--retro-blue) 0%, transparent 60%),
+                radial-gradient(circle at 70% 70%, var(--retro-red) 0%, transparent 60%);
+        }
+
+        /* Only 1 light here */
+        .retrofuturism-background::after {
+            animation-delay: 12s;
+            filter: blur(45px);
+            opacity: 0.35;
+            background:
+                radial-gradient(circle at 60% 25%, var(--retro-purple) 0%, transparent 65%);
         }
 
         @keyframes retrofuturism-move {
-            0% {
-                transform: translate(0%, 0%) rotate(0deg);
-                opacity: 0.6;
-            }
-            25% {
-                transform: translate(10%, -10%) rotate(5deg);
-                opacity: 0.7;
-            }
-            50% {
-                transform: translate(0%, 10%) rotate(0deg);
-                opacity: 0.6;
-            }
-            75% {
-                transform: translate(-10%, 5%) rotate(-5deg);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(0%, 0%) rotate(0deg);
-                opacity: 0.6;
-            }
+            0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.6; }
+            50% { transform: translate(8%, -10%) rotate(2deg); opacity: 0.7; }
+            100% { transform: translate(-6%, 8%) rotate(-2deg); opacity: 0.6; }
         }
 
         /* --- Header/Navigation Bar --- */
@@ -119,9 +100,8 @@
             transition: padding 0.3s;
         }
 
-        /* UPDATED: Larger Logo Image Styling */
         .logo-img {
-            height: 100px; /* Increased from 40px */
+            height: 100px;
             width: auto;
             display: block; 
         }
@@ -152,7 +132,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.3s ease;
             white-space: nowrap; 
         }
         
@@ -166,7 +146,7 @@
             background-color: var(--accent-hover);
         }
 
-        /* --- Main Content Area (Hero Section) --- */
+        /* --- Main Content (Hero Section) --- */
         .main-content {
             flex-grow: 1;
             display: flex;
@@ -176,51 +156,54 @@
             position: relative;
             z-index: 5; 
             min-height: 100vh; 
-            padding-top: 80px; 
-            background-color: transparent; 
+            padding-top: 80px;
             transition: padding-left 0.3s;
         }
 
         .hero-text-container {
-            max-width: 600px; 
+            max-width: 600px;
             padding-bottom: 50px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); 
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
         }
 
         .main-heading {
             font-size: 88px; 
             font-weight: 800;
-            margin-bottom: 25px; 
+            margin-bottom: 25px;
             line-height: 1;
-            transition: font-size 0.3s;
         }
 
         .description {
-            font-size: 24px; 
+            font-size: 24px;
             color: var(--secondary-text);
             margin-bottom: 40px;
             font-weight: 300;
-            transition: font-size 0.3s;
         }
-        
+
         /* --- Scroll Arrow --- */
         .scroll-arrow {
             position: absolute;
-            bottom: 30px; 
+            bottom: 30px;
             left: 50%;
-            transform: translateX(-50%); 
+            transform: translateX(-50%);
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z-index: 6; 
-            animation: bounce 1.5s infinite; 
-            color: var(--primary-text); 
-            text-decoration: none; 
+            z-index: 6;
+            animation: bounce 1.5s infinite;
+            color: var(--primary-text);
+            text-decoration: none;
         }
 
-        /* --- Schedule Section Styling --- */
+        /* Bouncing Animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* --- Schedule Section --- */
         .schedule-section {
-            background-color: var(--schedule-background); /* NOW PURPLISH */
+            background-color: var(--schedule-background);
             padding: 80px 40px;
             min-height: 100vh; 
             display: flex;
@@ -228,10 +211,10 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            position: relative; 
-            z-index: 5; 
+            position: relative;
+            z-index: 5;
         }
-        
+
         .schedule-table-container {
             width: 100%;
             max-width: 1200px;
@@ -240,29 +223,24 @@
         }
 
         .schedule-table {
-            min-width: 800px; 
+            min-width: 800px;
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
             margin-top: 20px;
-            table-layout: fixed; 
         }
 
         .schedule-table th, .schedule-table td {
             padding: 18px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            font-weight: 400;
-            word-wrap: break-word;
-            font-size: 15px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
         }
-        
+
         .schedule-table th {
             color: var(--header-text-dark); 
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 14px;
         }
-        
+
         .time-col {
             font-weight: 600;
             color: var(--secondary-text);
@@ -270,7 +248,7 @@
             padding-left: 25px;
         }
 
-        /* --- Footer Styling --- */
+        /* --- Footer --- */
         .footer {
             background-color: var(--footer-background); 
             color: var(--secondary-text); 
@@ -287,69 +265,48 @@
             transition: color 0.3s ease;
         }
 
-        /* ==================================== */
-        /* MOBILE OPTIMIZATION                */
-        /* ==================================== */
+        /* --- Mobile Optimization --- */
         @media (max-width: 900px) {
-            
             .header {
                 padding: 15px 20px;
                 flex-direction: column;
                 gap: 10px;
-                position: static; 
+                position: static;
             }
-            
-            .nav-links {
-                gap: 20px; 
-                justify-content: center;
-            }
-            
-            .nav-links a {
-                margin: 0; 
-            }
-            
-            .action-buttons {
-                margin-top: 10px;
-            }
-            
+
             .main-content {
                 min-height: 80vh; 
-                padding: 120px 5% 50px 5%; 
+                padding: 120px 5% 50px 5%;
                 justify-content: center;
                 text-align: center;
             }
 
             .main-heading {
-                font-size: 56px; 
+                font-size: 56px;
             }
 
             .description {
-                font-size: 18px; 
+                font-size: 18px;
             }
-            
+
             .scroll-arrow {
-                display: none; 
+                display: none;
             }
-            
+
             .footer .contact-info {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
             }
-            
-            .footer .contact-info a {
-                margin: 0;
-            }
-            
-            /* UPDATED: Adjusted logo size on mobile */
+
             .logo-img {
-                height: 45px; /* Increased from 30px */
+                height: 45px;
             }
         }
     </style>
 </head>
+
 <body>
-    
     <div class="retrofuturism-background"></div>
 
     <header class="header">
@@ -360,23 +317,19 @@
             <a href="istorija.html">Istorija</a>
             <a href="treneriai.html">Treneriai</a>
         </nav>
-        
         <div class="action-buttons">
-            <a href="https://boksofederacija.lt/kalendorius/" class="nav-button launch-button" target="_blank" rel="noopener noreferrer">Turnyrai</a>
+            <a href="https://boksofederacija.lt/kalendorius/" class="nav-button launch-button" target="_blank">Turnyrai</a>
         </div>
     </header>
 
     <main class="main-content" id="home">
         <div class="hero-text-container">
             <h1 class="main-heading">ROYAL BOXING</h1>
-            
-            <p class="description">
-                Geriausias bokso klubas Vilniuje. Prisijunk ir tu!
-            </p>
+            <p class="description">Geriausias bokso klubas Vilniuje. Prisijunk ir tu!</p>
         </div>
-        
+
         <a href="#schedule" class="scroll-arrow scroll-trigger" aria-label="Scroll to schedule">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <polyline points="19 12 12 19 5 12"></polyline>
             </svg>
@@ -384,9 +337,8 @@
     </main>
 
     <section id="schedule" class="schedule-section">
-        
         <h2>Mūsų Tvarkaraštis</h2>
-        
+
         <div class="schedule-table-container">
             <table class="schedule-table">
                 <thead>
@@ -412,11 +364,7 @@
                     </tr>
                     <tr>
                         <td class="time-col">10:00 - 11:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         <td>Suaugusių grupė Jaroslav 70,00 Eur/mėn</td>
                     </tr>
                     <tr>
@@ -467,7 +415,7 @@
             <p><strong>MIROSLAV:</strong> <a href="tel:+37065554400">+370 655 54400</a></p>
         </div>
     </footer>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const scrollTriggers = document.querySelectorAll('.scroll-trigger');
@@ -498,12 +446,12 @@
 
             scrollTriggers.forEach(trigger => {
                 trigger.addEventListener('click', function(e) {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
 
                     if (targetElement) {
-                        customSmoothScroll(targetElement, 1000); 
+                        customSmoothScroll(targetElement, 1000);
                     }
                 });
             });
